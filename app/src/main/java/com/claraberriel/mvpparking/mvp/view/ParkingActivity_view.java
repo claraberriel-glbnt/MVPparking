@@ -2,9 +2,9 @@ package com.claraberriel.mvpparking.mvp.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.app.FragmentManager;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 
 import java.lang.ref.WeakReference;
 

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       //presenter = new ParkingSize_presenter(new ParkingSize_model(), new ParkingSize_view(this, binding));
+       presenter = new ParkingSize_presenter(new ParkingSize_model(), new ParkingSize_view(this, binding));
 
        setListeners();
     }
