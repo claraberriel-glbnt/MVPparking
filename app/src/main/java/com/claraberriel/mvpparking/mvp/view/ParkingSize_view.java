@@ -1,7 +1,7 @@
 package com.claraberriel.mvpparking.mvp.view;
 
 import android.app.Activity;
-import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.claraberriel.mvpparking.R;
@@ -9,13 +9,21 @@ import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
 public class ParkingSize_view extends ParkingActivity_view{
 
-    private final ActivityMainBinding binding;
+    private ActivityMainBinding binding;
+    public EditText number = binding.editTextNumber;
 
     public ParkingSize_view(Activity activity, ActivityMainBinding binding) {
         super(activity);
         this.binding = binding;
     }
 
+    // input to int
+    public int getNumber(){
+        int lots = Integer.parseInt(number.getText().toString());
+        return lots;
+    }
+
+    //reusable
     public void showToast(String msgName){
         Toast.makeText(getContext(), msgName, Toast.LENGTH_LONG).show();
     }
@@ -29,12 +37,6 @@ public class ParkingSize_view extends ParkingActivity_view{
 
     displays things.
     handles user input and passes it to the Presenter.
-
-
-
-  public void setCount(String count) {
-        binding.countLabel.setText(count);
-    }
 
    */
 }

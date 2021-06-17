@@ -40,10 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        /*
-        binding.countButton.setOnClickListener(view -> presenter.onCountButtonPressed());
-        binding.resetButton.setOnClickListener(view -> presenter.onResetButtonPressed());
-         */
+        binding.submitButton.setOnClickListener(view -> presenter.onSubmit());
     }
 
 }

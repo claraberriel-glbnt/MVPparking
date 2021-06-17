@@ -11,12 +11,16 @@ public class ParkingSize_presenter {
     private ParkingSize_model model;
     private ParkingSize_view view;
 
+
     public ParkingSize_presenter(ParkingSize_model model, ParkingSize_view view) {
         this.model = model;
         this.view = view;
     }
 
-    //Event handlers go here
+    //Event handlers
+    public void onSubmit(){
+        view.showParkAmount(view.getNumber());
+    }
 
     /*
     Presenter
