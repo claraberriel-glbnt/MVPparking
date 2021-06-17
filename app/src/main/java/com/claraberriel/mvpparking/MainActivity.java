@@ -2,6 +2,9 @@ package com.claraberriel.mvpparking;
 
 import android.os.Bundle;
 
+import com.claraberriel.mvpparking.mvp.model.ParkingSize_model;
+import com.claraberriel.mvpparking.mvp.presenter.ParkingSize_presenter;
+import com.claraberriel.mvpparking.mvp.view.ParkingSize_view;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +23,9 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
+   // private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private ParkingSize_presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+       //presenter = new ParkingSize_presenter(new ParkingSize_model(), new ParkingSize_view(this, binding));
+
+       setListeners();
+    }
+
+    private void setListeners() {
+        /*
+        binding.countButton.setOnClickListener(view -> presenter.onCountButtonPressed());
+        binding.resetButton.setOnClickListener(view -> presenter.onResetButtonPressed());
+         */
     }
 
 }
