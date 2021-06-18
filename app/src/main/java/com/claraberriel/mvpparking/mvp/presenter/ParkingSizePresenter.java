@@ -2,16 +2,16 @@ package com.claraberriel.mvpparking.mvp.presenter;
 
 import android.util.Log;
 
-import com.claraberriel.mvpparking.mvp.model.ParkingSizeModel;
+import com.claraberriel.mvpparking.mvp.model.ParkingModel;
 import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
 public class ParkingSizePresenter {
 
-    private ParkingSizeModel model;
+    private ParkingModel model;
     private ParkingSizeView view;
 
 
-    public ParkingSizePresenter(ParkingSizeModel model, ParkingSizeView view) {
+    public ParkingSizePresenter(ParkingModel model, ParkingSizeView view) {
         this.model = model;
         this.view = view;
     }
@@ -24,6 +24,8 @@ public class ParkingSizePresenter {
             Log.e(ParkingSizeView.class.getSimpleName(), e.toString());
             view.showInvalidError();
         }
+        model.setParkingSize(view.getEdittextNumber());
+        view.showParkAmount(model.getParkingSize());
     }
 
     /*

@@ -2,7 +2,7 @@ package com.claraberriel.mvpparking;
 
 import android.os.Bundle;
 
-import com.claraberriel.mvpparking.mvp.model.ParkingSizeModel;
+import com.claraberriel.mvpparking.mvp.model.ParkingModel;
 import com.claraberriel.mvpparking.mvp.presenter.ParkingSizePresenter;
 import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       presenter = new ParkingSizePresenter(new ParkingSizeModel(), new ParkingSizeView(this, binding));
+       presenter = new ParkingSizePresenter(new ParkingModel(), new ParkingSizeView(this, binding));
 
        setListeners();
     }

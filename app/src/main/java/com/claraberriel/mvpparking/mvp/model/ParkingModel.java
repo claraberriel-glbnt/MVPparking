@@ -1,14 +1,20 @@
 package com.claraberriel.mvpparking.mvp.model;
 
-import com.claraberriel.mvpparking.mvp.presenter.ParkingSizePresenter;
-
 import java.util.ArrayList;
 
-public class ParkingSizeModel {
+public class ParkingModel {
+    private int parkingSize;
     private ArrayList<Integer> parkingLots;
 
-    public ParkingSizeModel() {
+    public ParkingModel() {
         this.parkingLots = new ArrayList<>();
     }
 
+    public int getParkingSize (){
+        return this.parkingSize;
+    }
+
+    public void setParkingSize (int size){
+        this.parkingSize = size;
+    }
 }
