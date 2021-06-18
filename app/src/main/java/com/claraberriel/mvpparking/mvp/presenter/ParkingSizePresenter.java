@@ -1,25 +1,34 @@
 package com.claraberriel.mvpparking.mvp.presenter;
 
-import android.view.View;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.claraberriel.mvpparking.mvp.model.ParkingSize_model;
-import com.claraberriel.mvpparking.mvp.view.ParkingSize_view;
+import com.claraberriel.mvpparking.mvp.model.ParkingSizeModel;
+import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
-public class ParkingSize_presenter {
+public class ParkingSizePresenter {
 
-    private ParkingSize_model model;
-    private ParkingSize_view view;
+    private ParkingSizeModel model;
+    private ParkingSizeView view;
 
 
-    public ParkingSize_presenter(ParkingSize_model model, ParkingSize_view view) {
+    public ParkingSizePresenter(ParkingSizeModel model, ParkingSizeView view) {
         this.model = model;
         this.view = view;
     }
 
+    public void setParkingLotsLength() {
+        int length = view.getEdittextNumber();
+        return length;
+    }
+
     //Event handlers
     public void onSubmit(){
-        view.showParkAmount(view.getNumber());
+        try {
+            view.showParkAmount(view.getEdittextNumber());
+        }catch (NumberFormatException e){
+            Log.e(ParkingSizeView.class.getSimpleName(), e.toString());
+            view.showInvalidError();
+        }
     }
 
     /*

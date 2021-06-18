@@ -8,10 +8,10 @@ import androidx.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 
-public class ParkingActivity_view {
+public class ParkingActivityView {
     private WeakReference<Activity> activityRef;
 
-    public ParkingActivity_view(Activity activity) {
+    public ParkingActivityView(Activity activity) {
         activityRef = new WeakReference<>(activity);
     }
 
