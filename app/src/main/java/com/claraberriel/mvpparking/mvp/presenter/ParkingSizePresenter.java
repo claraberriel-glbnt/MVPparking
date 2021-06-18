@@ -24,7 +24,6 @@ public class ParkingSizePresenter {
             Log.e(ParkingSizeView.class.getSimpleName(), e.toString());
             view.showInvalidError();
         }
-        model.setParkingLots();
     }
 
     /*
