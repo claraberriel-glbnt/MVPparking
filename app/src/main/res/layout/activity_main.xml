@@ -9,7 +9,7 @@
     tools:ignore="ExtraText">
 
     <TextView
-        android:id="@+id/size_label"
+        android:id="@+id/text_main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -18,13 +18,13 @@
         android:textColor="@color/bonjour"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/image_main_valet"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/submit_button"
+        android:id="@+id/button_main_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_size"
@@ -33,43 +33,43 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/edittext_main_number" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/edittext_main_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
         android:singleLine="false"
         android:textColor="@color/sand_collar"
-        app:layout_constraintBottom_toTopOf="@+id/submit_button"
+        app:layout_constraintBottom_toTopOf="@+id/button_main_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_main_provide" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textview_main_provide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="@string/provide_txt"
         android:textColor="@color/sand_collar"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
+        app:layout_constraintBottom_toTopOf="@+id/edittext_main_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/image_main_valet" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image_main_valet"
         android:layout_width="167dp"
         android:layout_height="188dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/textview_main_provide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/size_label"
+        app:layout_constraintTop_toBottomOf="@+id/text_main_title"
         app:srcCompat="@drawable/valet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
