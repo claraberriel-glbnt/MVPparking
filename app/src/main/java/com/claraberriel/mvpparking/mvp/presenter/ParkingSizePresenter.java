@@ -16,7 +16,7 @@ public class ParkingSizePresenter {
         this.view = view;
     }
 
-    public void setParkingLotsLength() {
+    public int setParkingLotsLength() {
         int length = view.getEdittextNumber();
         return length;
     }
