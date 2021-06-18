@@ -12,7 +12,7 @@ public class ParkingSizeModel {
         this.presenter = presenter;
     }
 
-    public int setParkingLots() {
+    public void setParkingLots() {
         int size = presenter.setParkingLotsLength();
         int i;
         //initializing ArrayList by adding the proper amount of elements
