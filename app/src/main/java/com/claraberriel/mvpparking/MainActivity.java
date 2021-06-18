@@ -12,7 +12,7 @@ import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-   // private AppBarConfiguration appBarConfiguration;
+    // private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private ParkingSizePresenter presenter;
 
@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       presenter = new ParkingSizePresenter(new ParkingModel(), new ParkingSizeView(this, binding));
+        presenter = new ParkingSizePresenter(new ParkingModel(), new ParkingSizeView(this, binding));
 
-       setListeners();
+        setListeners();
     }
 
     private void setListeners() {

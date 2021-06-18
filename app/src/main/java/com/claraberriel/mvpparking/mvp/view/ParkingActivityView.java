@@ -2,14 +2,13 @@ package com.claraberriel.mvpparking.mvp.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.app.FragmentManager;
 
 import androidx.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 
 public class ParkingActivityView {
-    private WeakReference<Activity> activityRef;
+    private final WeakReference<Activity> activityRef;
 
     public ParkingActivityView(Activity activity) {
         activityRef = new WeakReference<>(activity);
@@ -25,9 +24,4 @@ public class ParkingActivityView {
         return getActivity();
     }
 
-    @Nullable
-    public FragmentManager getFragmentManager() {
-        Activity activity = getActivity();
-        return (activity != null) ? activity.getFragmentManager() : null;
-    }
 }

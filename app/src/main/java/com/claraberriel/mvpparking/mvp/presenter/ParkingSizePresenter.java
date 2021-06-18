@@ -7,8 +7,8 @@ import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
 public class ParkingSizePresenter {
 
-    private ParkingModel model;
-    private ParkingSizeView view;
+    private final ParkingModel model;
+    private final ParkingSizeView view;
 
 
     public ParkingSizePresenter(ParkingModel model, ParkingSizeView view) {
@@ -17,10 +17,10 @@ public class ParkingSizePresenter {
     }
 
     //Event handlers
-    public void onSubmit(){
+    public void onSubmit() {
         try {
             view.showParkAmount(view.getEdittextNumber());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             Log.e(ParkingSizeView.class.getSimpleName(), e.toString());
             view.showInvalidError();
         }
