@@ -11,14 +11,7 @@ import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 import java.util.Objects;
 
 public class ParkingSizeView extends ParkingActivityView {
-
     private ActivityMainBinding binding;
-    public EditText edittextNumber;
-
-    {
-        assert false;
-        edittextNumber = binding.edittextMainNumber;
-    }
 
     public ParkingSizeView(Activity activity, ActivityMainBinding binding) {
         super(activity);
@@ -27,6 +20,7 @@ public class ParkingSizeView extends ParkingActivityView {
 
     // input to int
     public int getEdittextNumber() throws NumberFormatException {
+        EditText edittextNumber = binding.edittextMainNumber;
         return Integer.parseInt(edittextNumber.getText().toString());
     }
 

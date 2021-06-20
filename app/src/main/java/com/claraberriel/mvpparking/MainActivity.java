@@ -23,13 +23,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        presenter = new ParkingSizePresenter(new ParkingModel(), new ParkingSizeView(this, binding));
+        presenter = new ParkingSizePresenter(new ParkingModel(),
+                new ParkingSizeView(this, binding));
 
         setListeners();
     }
 
     private void setListeners() {
-        binding.submitButton.setOnClickListener(view -> presenter.onSubmit());
+        binding.buttonMainSubmit.setOnClickListener(view -> presenter.onSubmit());
     }
 
 }
