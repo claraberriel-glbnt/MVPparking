@@ -11,7 +11,7 @@ import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 import java.util.Objects;
 
 public class ParkingSizeView extends ParkingActivityView {
-    private ActivityMainBinding binding;
+    private final ActivityMainBinding binding;
 
     public ParkingSizeView(Activity activity, ActivityMainBinding binding) {
         super(activity);
