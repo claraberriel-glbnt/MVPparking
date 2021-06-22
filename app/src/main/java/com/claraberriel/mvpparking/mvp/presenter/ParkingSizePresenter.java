@@ -28,6 +28,9 @@ public class ParkingSizePresenter {
         } catch (NumberFormatException e) {
             Log.e(ParkingSizePresenter.class.getSimpleName(), e.toString());
             view.showInvalidError();
+        } catch (IllegalArgumentException ex) {
+            Log.e(ParkingSizePresenter.class.getSimpleName(), ex.toString());
+            view.showZeroNotAccepted();
         }
     }
 }

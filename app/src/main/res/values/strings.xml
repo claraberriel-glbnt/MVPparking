@@ -14,4 +14,5 @@
     <string name="main_msg_toast_set">Number of parking spaces set to %d</string>
     <string name="main_error_show">Error not able to set amount</string>
     <string name="main_img_valet">image of a Valet</string>
+    <string name="main_msg_nozero">Please set amount larger than 0</string>
 </resources>
