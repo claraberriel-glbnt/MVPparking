@@ -6,6 +6,7 @@ public class ParkingModel {
     private int parkingSize;
 
     public ParkingModel() {
+        ArrayList<Integer> parkingLots = new ArrayList<>();
     }
 
     public int getParkingSize() {
@@ -16,3 +17,4 @@ public class ParkingModel {
         this.parkingSize = size;
     }
 }
+s
