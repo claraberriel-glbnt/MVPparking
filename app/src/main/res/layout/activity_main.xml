@@ -45,9 +45,7 @@
         app:layout_constraintBottom_toTopOf="@id/button_main_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_main_provide"
-        tools:ignore="LabelFor"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@id/textview_main_provide" />
 
     <TextView
         android:id="@+id/textview_main_provide"
@@ -71,7 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_main_title"
-        app:srcCompat="@drawable/valet"
-        android:contentDescription="@string/main_img_valet" />
+        app:srcCompat="@drawable/valet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

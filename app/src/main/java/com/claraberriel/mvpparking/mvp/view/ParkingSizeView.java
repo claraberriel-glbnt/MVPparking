@@ -8,7 +8,9 @@ import android.widget.Toast;
 import com.claraberriel.mvpparking.R;
 import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
-import java.util.Objects;
+/**
+ * Displays things.Handles user input and passes it to the Presenter.
+ */
 
 public class ParkingSizeView extends ParkingActivityView {
     private final ActivityMainBinding binding;
@@ -19,29 +21,26 @@ public class ParkingSizeView extends ParkingActivityView {
     }
 
     // input to int
-    public int getEdittextNumber() throws NumberFormatException {
+    public int getParkingSize() throws NumberFormatException {
         EditText edittextNumber = binding.edittextMainNumber;
         return Integer.parseInt(edittextNumber.getText().toString());
     }
 
     //reusable
-    public void showToast(String msgName) {
-        Toast.makeText(getContext(), msgName, Toast.LENGTH_LONG).show();
+    private void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     public void showParkAmount(int amount) {
-        showToast(Objects.requireNonNull(getContext()).getString(R.string.toast_set, amount));
+        if (getContext() != null) {
+            showToast((getContext()).getString(R.string.main_msg_toast_set, amount));
+        }
     }
 
     public void showInvalidError() {
-        showToast(Objects.requireNonNull(getContext()).getString(R.string.show_error));
+        if (getContext() != null) {
+            showToast((getContext()).getString(R.string.main_error_show));
+        }
     }
 
-  /*
-  View
-
-    displays things.
-    handles user input and passes it to the Presenter.
-
-   */
 }
