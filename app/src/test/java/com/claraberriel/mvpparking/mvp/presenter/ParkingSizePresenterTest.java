@@ -34,7 +34,7 @@ public class ParkingSizePresenterTest {
     }
 
     @Test
-    public void onSumbitClicked() {
+    public void onSubmit_validSize_showParkAmount() {
         // Given certain valid size
         when(view.getParkingSize()).thenReturn(10);
         // When Submit button is pressed
@@ -45,7 +45,7 @@ public class ParkingSizePresenterTest {
     }
 
     @Test
-    public void onSubmitClickedException() {
+    public void onSubmit_invalidSize_showInvalidError() {
         // Given an out of range situation
         when(view.getParkingSize()).thenReturn(128);
         doThrow(new NumberFormatException()).when(model).setParkingSize(128);
@@ -53,6 +53,18 @@ public class ParkingSizePresenterTest {
         presenter.onSubmit();
         // Then throw error message
         verify(view).showInvalidError();
+        verify(view, never()).showParkAmount(anyInt());
+    }
+
+    @Test
+    public void onSumbit_zeroSize_showZeroNotAccepted() {
+        // Given size equal or less than zero
+        when(view.getParkingSize()).thenReturn(0);
+        doThrow(new IllegalArgumentException()).when(model).setParkingSize(0);
+        // When Submit button is pressed
+        presenter.onSubmit();
+        // Then show message
+        verify(view).showZeroNotAccepted();
         verify(view, never()).showParkAmount(anyInt());
     }
 
