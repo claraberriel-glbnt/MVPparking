@@ -8,9 +8,10 @@
     <string name="previous">Previous</string>
 
     <!-- Custom strings -->
-    <string name="parking_size">myValet</string>
-    <string name="add_size">Submit</string>
-    <string name="provide_txt">Please provide amount of Parking Lots:</string>
-    <string name="toast_set">Number of parking spaces set to %d</string>
-    <string name="show_error">Error not able to set amount</string>
+    <string name="main_title_parking_size">myValet</string>
+    <string name="main_action_add_size">Submit</string>
+    <string name="main_msg_provide_txt">Please provide amount of Parking Lots:</string>
+    <string name="main_msg_toast_set">Number of parking spaces set to %d</string>
+    <string name="main_error_show">Error not able to set amount</string>
+    <string name="main_img_valet">image of a Valet</string>
 </resources>
