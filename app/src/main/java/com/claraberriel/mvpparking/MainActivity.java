@@ -12,7 +12,6 @@ import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    // private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private ParkingSizePresenter presenter;
 
