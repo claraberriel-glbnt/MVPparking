@@ -1,6 +1,5 @@
 package com.claraberriel.mvpparking.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Reservation {
@@ -9,17 +8,30 @@ public class Reservation {
     private Date endDateTime;
     private String securityCode;
 
-    public Reservation() {
-        ArrayList<Integer> reservations = new ArrayList<>();
+    /**
+     * ---- Getters ----
+     */
+
+    public int getParkingNumber() {
+        return parkingNumber;
+    }
+
+    public Date getStartDateTime() {
+        return startDateTime;
+    }
+
+    public Date getEndDateTime() {
+        return endDateTime;
+    }
+
+    public String getSecurityCode() {
+        return securityCode;
     }
 
     /**
      * ---- Setters ----
      */
 
-    // I need to make condition if less or equal to parkingSize,
-    // is this done here on the model or on the presenter?
-    // should I use throws IllegalNumberException?
     public void setParkingNumber(int parkingNumber) {
         this.parkingNumber = parkingNumber;
     }
@@ -35,6 +47,7 @@ public class Reservation {
     public void setSecurityCode(String securityCode) {
         this.securityCode = securityCode;
     }
+
 
     /**
      * Draft of setReservation() structure

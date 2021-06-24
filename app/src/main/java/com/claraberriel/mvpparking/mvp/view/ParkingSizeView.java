@@ -1,11 +1,13 @@
 package com.claraberriel.mvpparking.mvp.view;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import com.claraberriel.mvpparking.R;
+import com.claraberriel.mvpparking.activities.NavActivity;
 import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
 /**
@@ -14,10 +16,12 @@ import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
 public class ParkingSizeView extends ParkingActivityView {
     private final ActivityMainBinding binding;
+    private Context context;
 
     public ParkingSizeView(Activity activity, ActivityMainBinding binding) {
         super(activity);
         this.binding = binding;
+        this.context = getContext();
     }
 
     // input to int
@@ -35,24 +39,25 @@ public class ParkingSizeView extends ParkingActivityView {
      */
 
     //reusable
-    private void showToast(String message) {
+    public void showToast(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     public void showParkAmount(int amount) {
-        if (getContext() != null) {
+        if (context != null) {
             showToast((getContext()).getString(R.string.main_msg_toast_set, amount));
         }
+        context.startActivity(new Intent(context, NavActivity.class));
     }
 
     public void showInvalidError() {
-        if (getContext() != null) {
+        if (context != null) {
             showToast((getContext()).getString(R.string.main_error_show));
         }
     }
 
     public void showZeroNotAccepted() {
-        if (getContext() != null) {
+        if (context != null) {
             showToast(getContext().getString(R.string.main_msg_nozero));
         }
     }

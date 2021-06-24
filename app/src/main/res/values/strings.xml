@@ -17,4 +17,6 @@
     <string name="main_msg_nozero">Please set amount larger than 0</string>
     <string name="nav_btn_reserve">Reserve</string>
     <string name="nav_btn_release">Release</string>
+    <string name="nav_msg_toast_reserve">Please fill in the fields to make a reservation</string>
+    <string name="nav_msg_toast_release">You cancel your reservation here</string>
 </resources>
