@@ -1,14 +1,13 @@
-package com.claraberriel.mvpparking;
+package com.claraberriel.mvpparking.activities;
 
 import android.os.Bundle;
-
-import com.claraberriel.mvpparking.mvp.model.ParkingModel;
-import com.claraberriel.mvpparking.mvp.presenter.ParkingSizePresenter;
-import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
+import com.claraberriel.mvpparking.mvp.model.ParkingModel;
+import com.claraberriel.mvpparking.mvp.presenter.ParkingSizePresenter;
+import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
 public class MainActivity extends AppCompatActivity {
 

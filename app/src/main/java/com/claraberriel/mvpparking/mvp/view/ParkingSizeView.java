@@ -9,7 +9,7 @@ import com.claraberriel.mvpparking.R;
 import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
 /**
- * Displays things.Handles user input and passes it to the Presenter.
+ * Displays things. Handles user input and passes it to the Presenter.
  */
 
 public class ParkingSizeView extends ParkingActivityView {
@@ -24,11 +24,15 @@ public class ParkingSizeView extends ParkingActivityView {
     public int getParkingSize() throws NumberFormatException {
         EditText edittextNumber = binding.edittextMainNumber;
         int result = Integer.parseInt(edittextNumber.getText().toString());
-        if (result <= 0){
+        if (result <= 0) {
             throw new IllegalArgumentException();
         }
         return result;
     }
+
+    /**
+     * ----- Toast messages -----
+     */
 
     //reusable
     private void showToast(String message) {
