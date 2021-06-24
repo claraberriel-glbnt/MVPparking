@@ -15,4 +15,6 @@
     <string name="main_error_show">Error not able to set amount</string>
     <string name="main_img_valet">image of a Valet</string>
     <string name="main_msg_nozero">Please set amount larger than 0</string>
+    <string name="nav_btn_reserve">Reserve</string>
+    <string name="nav_btn_release">Release</string>
 </resources>

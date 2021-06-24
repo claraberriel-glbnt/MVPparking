@@ -1,14 +1,13 @@
 package com.claraberriel.mvpparking.mvp.model;
 
-import java.util.ArrayList;
-
 public class ParkingModel {
     private int parkingSize;
 
     public ParkingModel() {
-        ArrayList<Integer> parkingLots = new ArrayList<>();
     }
 
+    // I have another getParkingSize on the view that was renamed from getEditTextNumber
+    // what is going on here?
     public int getParkingSize() {
         return this.parkingSize;
     }
@@ -16,5 +15,5 @@ public class ParkingModel {
     public void setParkingSize(int size) {
         this.parkingSize = size;
     }
+
 }
-s
