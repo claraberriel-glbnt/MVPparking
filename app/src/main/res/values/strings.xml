@@ -7,6 +7,11 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Custom strings -->
+    <string name="main_title_parking_size">myValet</string>
+    <string name="main_action_add_size">Submit</string>
+    <string name="main_msg_provide_txt">Please provide amount of Parking Lots:</string>
+    <string name="main_msg_toast_set">Number of parking spaces set to %d</string>
+    <string name="main_error_show">Error not able to set amount</string>
+    <string name="main_img_valet">image of a Valet</string>
 </resources>
