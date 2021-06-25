@@ -23,13 +23,14 @@ public class ParkingSizePresenter {
     //Event handlers
     public void onSubmit() {
         try {
-            view.showParkAmount(view.getParkingSize());
+            model.setParkingSize(view.getParkingSize());
+            view.showParkAmount(model.getParkingSize());
         } catch (NumberFormatException e) {
             Log.e(ParkingSizePresenter.class.getSimpleName(), e.toString());
             view.showInvalidError();
+        } catch (IllegalArgumentException ex) {
+            Log.e(ParkingSizePresenter.class.getSimpleName(), ex.toString());
+            view.showZeroNotAccepted();
         }
-        model.setParkingSize(view.getParkingSize());
-        view.showParkAmount(model.getParkingSize());
     }
-
 }

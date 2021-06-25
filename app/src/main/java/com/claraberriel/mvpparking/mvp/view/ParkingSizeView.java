@@ -23,7 +23,11 @@ public class ParkingSizeView extends ParkingActivityView {
     // input to int
     public int getParkingSize() throws NumberFormatException {
         EditText edittextNumber = binding.edittextMainNumber;
-        return Integer.parseInt(edittextNumber.getText().toString());
+        int result = Integer.parseInt(edittextNumber.getText().toString());
+        if (result <= 0){
+            throw new IllegalArgumentException();
+        }
+        return result;
     }
 
     //reusable
@@ -40,6 +44,12 @@ public class ParkingSizeView extends ParkingActivityView {
     public void showInvalidError() {
         if (getContext() != null) {
             showToast((getContext()).getString(R.string.main_error_show));
+        }
+    }
+
+    public void showZeroNotAccepted() {
+        if (getContext() != null) {
+            showToast(getContext().getString(R.string.main_msg_nozero));
         }
     }
 

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navy_blue"
-    tools:context=".MainActivity"
-    tools:ignore="ExtraText">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/text_main_title"
@@ -41,7 +40,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:singleLine="false"
+        android:singleLine="true"
         android:textColor="@color/sand_collar"
         app:layout_constraintBottom_toTopOf="@id/button_main_submit"
         app:layout_constraintEnd_toEndOf="parent"
