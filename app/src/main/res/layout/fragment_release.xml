@@ -11,6 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is the release fragment"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="220dp" />
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="252dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
