@@ -1,16 +1,40 @@
 package com.claraberriel.mvpparking.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-import com.claraberriel.mvpparking.databinding.ActivityNavigationBinding;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
-public class NavActivity extends Activity {
+import com.claraberriel.mvpparking.databinding.ActivityNavigationBinding;
+import com.claraberriel.mvpparking.fragments.ReleaseFragment;
+import com.claraberriel.mvpparking.fragments.ReserveFragment;
+
+public class NavActivity extends AppCompatActivity {
+
+    private static final String RESERVE_FRAGMENT_TAG = "RESERVE_FRAGMENT";
+    private static final String RELEASE_FRAGMENT_TAG = "RELEASE_FRAGMENT";
     private ActivityNavigationBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setListeners();
+    }
+
+    public void setListeners() {
+        binding.buttonReservation.setOnClickListener(view -> {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(binding.buttonReservation.getId(), new ReserveFragment(), RESERVE_FRAGMENT_TAG);
+            transaction.commit();
+        });
+
+        binding.buttonRelease.setOnClickListener(view -> {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(binding.buttonRelease.getId(), new ReleaseFragment(), RELEASE_FRAGMENT_TAG);
+            transaction.commit();
+        });
     }
 }
