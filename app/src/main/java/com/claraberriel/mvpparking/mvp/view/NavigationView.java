@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.claraberriel.mvpparking.R;
-import com.claraberriel.mvpparking.activities.ReleaseFragment;
-import com.claraberriel.mvpparking.activities.ReserveFragment;
+import com.claraberriel.mvpparking.fragments.ReleaseFragment;
+import com.claraberriel.mvpparking.fragments.ReserveFragment;
 import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
 
 public class NavigationView extends ParkingSizeView {

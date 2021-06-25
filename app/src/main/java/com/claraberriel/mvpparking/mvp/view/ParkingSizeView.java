@@ -34,6 +34,12 @@ public class ParkingSizeView extends ParkingActivityView {
         return result;
     }
 
+    public void goToNavActivity(int size) {
+        Intent intent = new Intent(context, NavActivity.class);
+        intent.putExtra("size key", size);
+        context.startActivity(intent);
+    }
+
     /**
      * ----- Toast messages -----
      */
@@ -47,7 +53,6 @@ public class ParkingSizeView extends ParkingActivityView {
         if (context != null) {
             showToast((getContext()).getString(R.string.main_msg_toast_set, amount));
         }
-        context.startActivity(new Intent(context, NavActivity.class));
     }
 
     public void showInvalidError() {

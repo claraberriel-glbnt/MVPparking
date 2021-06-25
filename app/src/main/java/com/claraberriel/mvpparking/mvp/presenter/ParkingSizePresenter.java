@@ -25,6 +25,7 @@ public class ParkingSizePresenter {
         try {
             model.setParkingSize(view.getParkingSize());
             view.showParkAmount(model.getParkingSize());
+            view.goToNavActivity(model.getParkingSize()); //ToDo not tested
         } catch (NumberFormatException e) {
             Log.e(ParkingSizePresenter.class.getSimpleName(), e.toString());
             view.showInvalidError();
