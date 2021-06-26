@@ -9,7 +9,7 @@ import com.claraberriel.mvpparking.R;
 import com.claraberriel.mvpparking.databinding.ActivityNavigationBinding;
 import com.claraberriel.mvpparking.fragments.AutoReleaseFragment;
 import com.claraberriel.mvpparking.fragments.ReleaseFragment;
-import com.claraberriel.mvpparking.fragments.ReserveFragment;
+import com.claraberriel.mvpparking.fragments.ReservationFragment;
 
 public class NavActivity extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class NavActivity extends AppCompatActivity {
     public void setListeners() {
         binding.buttonReservation.setOnClickListener(view -> {
             FragmentTransaction transactionReserve = getSupportFragmentManager().beginTransaction();
-            transactionReserve.replace(R.id.fragment_container, new ReserveFragment(), RESERVE_FRAGMENT_TAG);
+            transactionReserve.replace(R.id.fragment_container, new ReservationFragment(), RESERVE_FRAGMENT_TAG);
             transactionReserve.commit();
         });
 
