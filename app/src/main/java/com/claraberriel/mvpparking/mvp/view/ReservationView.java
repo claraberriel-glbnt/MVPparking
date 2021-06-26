@@ -6,10 +6,11 @@ import com.claraberriel.mvpparking.databinding.FragmentReservationBinding;
 
 public class ReservationView extends FragmentView {
 
-    private FragmentReservationBinding binding;
+    private FragmentReservationBinding reservationBinding;
 
-    public ReservationView(Fragment fragmentRef, FragmentReservationBinding binding) {
+    public ReservationView(Fragment fragmentRef, FragmentReservationBinding reservationBinding) {
         super(fragmentRef);
-        this.binding = binding;
+        this.reservationBinding = reservationBinding;
     }
+
 }

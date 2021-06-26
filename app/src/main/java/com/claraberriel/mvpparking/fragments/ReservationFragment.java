@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.claraberriel.mvpparking.R;
 
-public class ReserveFragment extends Fragment {
+public class ReservationFragment extends Fragment {
 
-    public ReserveFragment() {
+    public ReservationFragment() {
     }
 
     @Override
