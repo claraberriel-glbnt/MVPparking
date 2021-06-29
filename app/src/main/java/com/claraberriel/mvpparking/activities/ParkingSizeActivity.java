@@ -4,21 +4,21 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
+import com.claraberriel.mvpparking.databinding.ActivityParkingSizeBinding;
 import com.claraberriel.mvpparking.mvp.model.ParkingModel;
 import com.claraberriel.mvpparking.mvp.presenter.ParkingSizePresenter;
 import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
-public class MainActivity extends AppCompatActivity {
+public class ParkingSizeActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private ActivityParkingSizeBinding binding;
     private ParkingSizePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityParkingSizeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         presenter = new ParkingSizePresenter(new ParkingModel(),

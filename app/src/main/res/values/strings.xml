@@ -20,4 +20,10 @@
     <string name="nav_msg_toast_reserve">Please fill in the fields to make a reservation</string>
     <string name="nav_msg_toast_release">You cancel your reservation here</string>
     <string name="nav_btn_auto_release">Auto Release</string>
+    <string name="reserve_msg_create">Create a reservation</string>
+    <string name="reserve_edittext_start">From</string>
+    <string name="reserve_edittext_to">To</string>
+    <string name="reservationview_err_msg_inthepast">You can\'t schedule a reservation in the past</string>
+    <string name="reservationview_err_msg_missingfield">You\'re missing a field</string>
+    <string name="reservationview_err_msg_delorean">Unless you\'re driving the DeLorean time machine, you can\'t pick up your car before you park it</string>
 </resources>

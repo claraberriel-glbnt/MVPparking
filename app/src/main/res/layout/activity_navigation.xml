@@ -4,14 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/navy_blue"
     tools:context=".activities.NavActivity">
 
     <Button
         android:id="@+id/button_reservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/nav_btn_reserve"
+        app:backgroundTint="@color/teal_1"
         app:layout_constraintEnd_toStartOf="@id/button_release"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +29,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
         android:text="@string/nav_btn_release"
+        app:backgroundTint="@color/teal_1"
         app:layout_constraintEnd_toStartOf="@id/button_automatic_release"
         app:layout_constraintStart_toEndOf="@id/button_reservation"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +41,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="@string/nav_btn_auto_release"
+        app:backgroundTint="@color/teal_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_release"
         app:layout_constraintTop_toTopOf="parent" />

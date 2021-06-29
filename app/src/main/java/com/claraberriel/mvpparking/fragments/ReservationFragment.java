@@ -2,6 +2,7 @@ package com.claraberriel.mvpparking.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,14 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.claraberriel.mvpparking.R;
+import com.claraberriel.mvpparking.databinding.FragmentReservationBinding;
+import com.claraberriel.mvpparking.mvp.model.ReservationModel;
+import com.claraberriel.mvpparking.mvp.presenter.ReservationPresenter;
+import com.claraberriel.mvpparking.mvp.view.ReservationView;
 
 public class ReservationFragment extends Fragment {
+    private ReservationPresenter presenter;
+    private FragmentReservationBinding binding;
 
     public ReservationFragment() {
     }
@@ -24,12 +30,30 @@ public class ReservationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reservation, container, false);
-        return view;
+        binding = FragmentReservationBinding.inflate(inflater, container, false);
+
+        presenter = new ReservationPresenter(new ReservationView(this, binding), new ReservationModel());
+
+        binding.startDateTime.setInputType(InputType.TYPE_NULL);
+        binding.endDateTime.setInputType(InputType.TYPE_NULL);
+
+        setListeners();
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
+    private void setListeners() {
+        binding.startDateTime.setOnClickListener(view -> presenter.onFrom());
+        binding.endDateTime.setOnClickListener(view -> presenter.onTo());
+        binding.reserveBtnSchedule.setOnClickListener(view -> presenter.onSchedule());
+    }
+
+    /**
+     * setter in the fragment to instance model
+     */
 }
