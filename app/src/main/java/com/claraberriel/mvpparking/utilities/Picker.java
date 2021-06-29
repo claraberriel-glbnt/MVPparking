@@ -8,8 +8,14 @@ import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Picker {
+    Date date;
+
+    public Date getDate() {
+        return date;
+    }
 
     public Picker(EditText date_time) {
         showDateTimeDialog(date_time);
@@ -31,7 +37,7 @@ public class Picker {
                         calendar.set(Calendar.MINUTE, minute);
 
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
-
+                        date = calendar.getTime();
                         date_time.setText(simpleDateFormat.format(calendar.getTime()));
                     }
                 };
