@@ -10,6 +10,9 @@ import com.claraberriel.mvpparking.R;
 import com.claraberriel.mvpparking.activities.NavActivity;
 import com.claraberriel.mvpparking.databinding.ActivityParkingSizeBinding;
 
+import static com.claraberriel.mvpparking.activities.NavActivity.SIZE_KEY;
+
+
 /**
  * Displays things. Handles user input and passes it to the Presenter.
  */
@@ -27,7 +30,7 @@ public class ParkingSizeView extends ParkingActivityView {
     // input to int
     public int getParkingSize() throws NumberFormatException {
         EditText edittextNumber = binding.edittextMainNumber;
-        int result = Integer.parseInt(edittextNumber.getText().toString()); //model
+        int result = Integer.parseInt(edittextNumber.getText().toString());
         if (result <= 0) {
             throw new IllegalArgumentException();
         }
@@ -37,7 +40,7 @@ public class ParkingSizeView extends ParkingActivityView {
     public void goToNavActivity(int size) {
         if (context != null) {
             Intent intent = new Intent(context, NavActivity.class);
-            intent.putExtra("size key", size);
+            intent.putExtra(SIZE_KEY, size);
             context.startActivity(intent);
         }
     }
@@ -47,7 +50,7 @@ public class ParkingSizeView extends ParkingActivityView {
      */
 
     //reusable
-    public void showToast(String message) {
+    private void showToast(String message) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 

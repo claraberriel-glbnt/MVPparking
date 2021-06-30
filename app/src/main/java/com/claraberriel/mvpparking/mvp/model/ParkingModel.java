@@ -6,8 +6,6 @@ public class ParkingModel {
     public ParkingModel() {
     }
 
-    // I have another getParkingSize on the view that was renamed from getEditTextNumber
-    // what is going on here?
     public int getParkingSize() {
         return this.parkingSize;
     }

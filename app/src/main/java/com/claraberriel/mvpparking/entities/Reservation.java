@@ -1,11 +1,12 @@
 package com.claraberriel.mvpparking.entities;
 
-import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Reservation {
+public class Reservation implements Parcelable {
     private int parkingNumber;
-    private Date startDateTime;
-    private Date endDateTime;
+    private long startDateTime;
+    private long endDateTime;
     private String securityCode;
 
     /**
@@ -16,11 +17,11 @@ public class Reservation {
         return parkingNumber;
     }
 
-    public Date getStartDateTime() {
+    public long getStartDateTime() {
         return startDateTime;
     }
 
-    public Date getEndDateTime() {
+    public long getEndDateTime() {
         return endDateTime;
     }
 
@@ -36,11 +37,11 @@ public class Reservation {
         this.parkingNumber = parkingNumber;
     }
 
-    public void setStartDateTime(Date startDateTime) {
+    public void setStartDateTime(long startDateTime) {
         this.startDateTime = startDateTime;
     }
 
-    public void setEndDateTime(Date endDateTime) {
+    public void setEndDateTime(long endDateTime) {
         this.endDateTime = endDateTime;
     }
 
@@ -48,19 +49,45 @@ public class Reservation {
         this.securityCode = securityCode;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-    /**
-     * Draft of setReservation() structure
-     *
-     * takes:
-     * -Start Date and Time (ideally already "concatenated" (if string) or somehow together)
-     * -End Date and Time (idem)
-     * -Parking number
-     * -Security code
-     *
-     * Then we need to compare with ArrayList reservation to check
-     * that it doesn't overlap with a previous reservation.
-     * This probably should be done in another method?
-     */
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.parkingNumber);
+        dest.writeLong(this.startDateTime);
+        dest.writeLong(this.endDateTime);
+        dest.writeString(this.securityCode);
+    }
 
+    public void readFromParcel(Parcel source) {
+        this.parkingNumber = source.readInt();
+        this.startDateTime = source.readLong();
+        this.endDateTime = source.readLong();
+        this.securityCode = source.readString();
+    }
+
+    public Reservation() {
+    }
+
+    protected Reservation(Parcel in) {
+        this.parkingNumber = in.readInt();
+        this.startDateTime = in.readLong();
+        this.endDateTime = in.readLong();
+        this.securityCode = in.readString();
+    }
+
+    public static final Parcelable.Creator<Reservation> CREATOR = new Parcelable.Creator<Reservation>() {
+        @Override
+        public Reservation createFromParcel(Parcel source) {
+            return new Reservation(source);
+        }
+
+        @Override
+        public Reservation[] newArray(int size) {
+            return new Reservation[size];
+        }
+    };
 }
