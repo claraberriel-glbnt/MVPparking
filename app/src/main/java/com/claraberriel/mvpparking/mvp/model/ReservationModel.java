@@ -12,6 +12,10 @@ public class ReservationModel {
         this.parking = parking;
     }
 
+    public Parking getParking() {
+        return parking;
+    }
+
     public void addReservation(Reservation reservation) {
         ArrayList<Reservation> reservations = parking.getReservations();
         reservations.add(reservation);

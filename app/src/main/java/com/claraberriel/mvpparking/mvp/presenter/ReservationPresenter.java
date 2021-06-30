@@ -10,8 +10,7 @@ import com.claraberriel.mvpparking.utilities.DateUtils;
 import java.util.Date;
 
 public class ReservationPresenter {
-    private Reservation reservation = new Reservation();
-    private int parkingSize;
+    private Reservation reservation = new Reservation(); // ToDo construct later
     private final ReservationView reservationView;
     private final ReservationModel reservationModel;
 
@@ -48,10 +47,9 @@ public class ReservationPresenter {
         reservation.setSecurityCode(securityCode);
     }
 
-    //ToDo try catch
     public void verifyAndSetParkingNumber() {
         int parkingNumber = reservationView.getParkingNumber();
-        if (parkingNumber <= parkingSize){
+        if (parkingNumber <= reservationModel.getParking().getParkingSize()){
             try {
                 reservation.setParkingNumber(parkingNumber);
             } catch (NumberFormatException e) {
