@@ -11,11 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.claraberriel.mvpparking.databinding.FragmentReservationBinding;
+import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.mvp.model.ReservationModel;
 import com.claraberriel.mvpparking.mvp.presenter.ReservationPresenter;
 import com.claraberriel.mvpparking.mvp.view.ReservationView;
 
 public class ReservationFragment extends Fragment {
+    public static final String PARKING_KEY  = "PARKING";
     private ReservationPresenter presenter;
     private FragmentReservationBinding binding;
 
@@ -32,10 +34,11 @@ public class ReservationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentReservationBinding.inflate(inflater, container, false);
 
-        presenter = new ReservationPresenter(new ReservationView(this, binding), new ReservationModel());
-
         binding.startDateTime.setInputType(InputType.TYPE_NULL);
         binding.endDateTime.setInputType(InputType.TYPE_NULL);
+
+        Parking parking = getArguments().getParcelable(PARKING_KEY);
+        presenter = new ReservationPresenter(new ReservationView(this, binding), new ReservationModel(parking));
 
         setListeners();
 

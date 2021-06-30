@@ -26,4 +26,7 @@
     <string name="reservationview_err_msg_inthepast">You can\'t schedule a reservation in the past</string>
     <string name="reservationview_err_msg_missingfield">You\'re missing a field</string>
     <string name="reservationview_err_msg_delorean">Unless you\'re driving the DeLorean time machine, you can\'t pick up your car before you park it</string>
+    <string name="reservationview_err_msg_numberformat">Parking Number provided does not have the appropriate format</string>
+    <string name="reservationview_err_msg_zero">Parking Number should be larger than zero</string>
+    <string name="reservationview_err_msg_large">We have parking numbers available up to %d</string>
 </resources>
