@@ -45,10 +45,12 @@ public class ReservationFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /*
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+     */
 
     private void setListeners() {
         binding.startDateTime.setOnClickListener(view -> presenter.onFrom());
@@ -57,6 +59,6 @@ public class ReservationFragment extends Fragment {
     }
 
     /**
-     * setter in the fragment to instance model
+     * ToDo setter in the fragment to instance model
      */
 }
