@@ -1,7 +1,6 @@
 package com.claraberriel.mvpparking.mvp.view;
 
 import android.content.Context;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -14,51 +13,46 @@ import java.util.Date;
 
 public class ReservationView extends FragmentView {
 
-    private FragmentReservationBinding reservationBinding;
-    private EditText start_date_time;
-    private EditText end_date_time;
-    private EditText parkingNumber;
-    private EditText securityCode;
-    private Picker startDatePicker;
-    private Picker endDatePicker;
-    private Context context;
-
-
+    private final FragmentReservationBinding reservationBinding;
+    private final Context context;
+    private final Picker startDatePicker;
+    private final Picker endDatePicker;
+    
     public ReservationView(Fragment fragmentRef, FragmentReservationBinding reservationBinding) {
         super(fragmentRef);
         this.reservationBinding = reservationBinding;
         this.context = getContext();
+        startDatePicker = new Picker(reservationBinding.startDateTime);
+        endDatePicker = new Picker(reservationBinding.endDateTime);
     }
 
     /**
      * Show Date and Time Dialogs
      */
 
-    public void startDateTimeDialog(){
-        start_date_time = reservationBinding.startDateTime;
-        startDatePicker = new Picker(start_date_time);
+    public void startDateTimeDialog() {
+        startDatePicker.show();
     }
 
     public void endDateTimeDialog() {
-        end_date_time = reservationBinding.endDateTime;
-        endDatePicker = new Picker(end_date_time);
+        endDatePicker.show();
     }
 
     /**
      * Getters
      * @return values from EditTexts inputs
      */
+
     public Date getStartDate() {
-        return startDatePicker.getDate();
+        return startDatePicker != null ? startDatePicker.getDate() : null;
     }
 
-    public Date getEndDate() {
-        return endDatePicker.getDate();
+    public Date getEndDate(){
+        return endDatePicker != null ? endDatePicker.getDate() : null;
     }
 
     public int getParkingNumber() throws NumberFormatException {
-            parkingNumber = reservationBinding.parkingNumber;
-            int result = Integer.parseInt(parkingNumber.getText().toString());
+            int result = Integer.parseInt(reservationBinding.parkingNumber.getText().toString());
             if (result <= 0) {
                 throw new IllegalArgumentException();
             }
@@ -66,8 +60,7 @@ public class ReservationView extends FragmentView {
     }
 
     public String getSecurityCode() {
-        securityCode = reservationBinding.securityCode;
-        return securityCode.getText().toString();
+        return reservationBinding.securityCode.getText().toString();
     }
 
     /**
@@ -113,6 +106,18 @@ public class ReservationView extends FragmentView {
     public void showLargeNumber(int value) {
         if (context != null) {
             showToast((context).getString(R.string.reservationview_err_msg_large, value));
+        }
+    }
+
+    public void showLargerThanThree() {
+        if (context != null){
+            showToast((context).getString(R.string.reservationview_err_msg_largerthan3));
+        }
+    }
+    
+    public void showReservationSuccess() {
+        if (context != null){
+            showToast((context).getString(R.string.reservationview_msg_success));
         }
     }
 }

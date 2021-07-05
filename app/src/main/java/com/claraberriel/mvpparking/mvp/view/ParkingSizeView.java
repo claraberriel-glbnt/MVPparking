@@ -3,7 +3,6 @@ package com.claraberriel.mvpparking.mvp.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.claraberriel.mvpparking.R;
@@ -19,7 +18,7 @@ import static com.claraberriel.mvpparking.activities.NavActivity.SIZE_KEY;
 
 public class ParkingSizeView extends ParkingActivityView {
     private final ActivityParkingSizeBinding binding;
-    private Context context;
+    private final Context context;
 
     public ParkingSizeView(Activity activity, ActivityParkingSizeBinding binding) {
         super(activity);
@@ -29,8 +28,7 @@ public class ParkingSizeView extends ParkingActivityView {
 
     // input to int
     public int getParkingSize() throws NumberFormatException {
-        EditText edittextNumber = binding.edittextMainNumber;
-        int result = Integer.parseInt(edittextNumber.getText().toString());
+        int result = Integer.parseInt(binding.edittextMainNumber.getText().toString());
         if (result <= 0) {
             throw new IllegalArgumentException();
         }
@@ -46,7 +44,8 @@ public class ParkingSizeView extends ParkingActivityView {
     }
 
     /**
-     * ----- Toast messages -----
+     * Toast messages
+     * @param message to be displayed
      */
 
     //reusable

@@ -20,13 +20,21 @@ public class ReservationFragment extends Fragment {
     public static final String PARKING_KEY  = "PARKING";
     private ReservationPresenter presenter;
     private FragmentReservationBinding binding;
+    private ReservationFragmentDelegate delegate;
 
     public ReservationFragment() {
+    }
+
+    public interface ReservationFragmentDelegate{
+        void onReservationFragmentButtonClicked(Parking parking);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if(context instanceof ReservationFragmentDelegate){
+            delegate = (ReservationFragmentDelegate) context;
+        }
     }
 
     @Nullable
@@ -45,20 +53,13 @@ public class ReservationFragment extends Fragment {
         return binding.getRoot();
     }
 
-    /*
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-     */
-
     private void setListeners() {
         binding.startDateTime.setOnClickListener(view -> presenter.onFrom());
         binding.endDateTime.setOnClickListener(view -> presenter.onTo());
-        binding.reserveBtnSchedule.setOnClickListener(view -> presenter.onSchedule());
+        binding.reserveBtnSchedule.setOnClickListener(view -> {
+            if(presenter.onSchedule()){
+                delegate.onReservationFragmentButtonClicked(presenter.getParkingWithReservations());
+            }
+        });
     }
-
-    /**
-     * ToDo setter in the fragment to instance model
-     */
 }

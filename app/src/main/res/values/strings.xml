@@ -29,4 +29,6 @@
     <string name="reservationview_err_msg_numberformat">Parking Number provided does not have the appropriate format</string>
     <string name="reservationview_err_msg_zero">Parking Number should be larger than zero</string>
     <string name="reservationview_err_msg_large">We have parking numbers available up to %d</string>
+    <string name="reservationview_err_msg_largerthan3">Your security code should have at least 3 characters</string>
+    <string name="reservationview_msg_success">Reservation scheduled successfully</string>
 </resources>
