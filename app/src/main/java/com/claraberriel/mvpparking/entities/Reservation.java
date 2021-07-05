@@ -4,10 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Reservation implements Parcelable {
-    private int parkingNumber;
     private long startDateTime;
     private long endDateTime;
+    private int parkingNumber;
     private String securityCode;
+
+    public Reservation(long startDateTime, long endDateTime, int parkingNumber,String securityCode) {
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.parkingNumber = parkingNumber;
+
+        this.securityCode = securityCode;
+    }
 
     /**
      * ---- Getters ----

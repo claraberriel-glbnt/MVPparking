@@ -12,6 +12,7 @@ import java.util.Date;
 
 public class Picker {
     Date date;
+    private DatePickerDialog datePickerDialog;
 
     public Date getDate() {
         return date;
@@ -49,10 +50,14 @@ public class Picker {
             }
         };
 
-        new DatePickerDialog(date_time.getContext(),
+        datePickerDialog = new DatePickerDialog(date_time.getContext(),
                 dateSetListener,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)).show();
+                calendar.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public void show() {
+        datePickerDialog.show();
     }
 }

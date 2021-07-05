@@ -16,8 +16,29 @@ public class ReservationModel {
         return parking;
     }
 
+    public ArrayList<Reservation> getReservationsList() {
+        return parking.getReservations();
+    }
+
     public void addReservation(Reservation reservation) {
-        ArrayList<Reservation> reservations = parking.getReservations();
-        reservations.add(reservation);
+        if (validateAddReservation(reservation)) {
+            ArrayList<Reservation> reservations = getReservationsList();
+            reservations.add(reservation);
+        }
+    }
+
+    public boolean validateAddReservation(Reservation reservation) {
+        ArrayList<Reservation> reservations = getReservationsList();
+        if (reservations.size() == 0) {
+            return true;
+        }
+        for (Reservation reservationInList : reservations) {
+            if (reservation.getParkingNumber() != reservationInList.getParkingNumber()) {
+                return true;
+            } else {
+                return reservation.getStartDateTime() > reservationInList.getEndDateTime();
+            }
+        }
+        return true;
     }
 }

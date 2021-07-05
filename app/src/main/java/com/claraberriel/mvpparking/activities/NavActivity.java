@@ -21,7 +21,6 @@ public class NavActivity extends AppCompatActivity {
     private static final String RELEASE_FRAGMENT_TAG = "RELEASE_FRAGMENT";
     private static final String AUTO_RELEASE_FRAGMENT_TAG = "AUTO_RELEASE_FRAGMENT";
     private ActivityNavigationBinding binding;
-    private int parkingSize;
     private NavPresenter presenter;
 
 
@@ -32,7 +31,7 @@ public class NavActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle(R.string.main_title_parking_size);
 
-        parkingSize = getIntent().getIntExtra(SIZE_KEY, 0);
+        int parkingSize = getIntent().getIntExtra(SIZE_KEY, 0);
         presenter = new NavPresenter(parkingSize);
 
         setListeners();
