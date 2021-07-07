@@ -2,14 +2,18 @@ package com.claraberriel.mvpparking.mvp.model;
 
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
+import com.claraberriel.mvpparking.utilities.DateUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ReservationModel {
     private Parking parking;
+    DateUtils dateUtils;
 
-    public ReservationModel(Parking parking) {
+    public ReservationModel(Parking parking, DateUtils dateUtils) {
         this.parking = parking;
+        this.dateUtils = dateUtils;
     }
 
     public Parking getParking() {
@@ -40,5 +44,13 @@ public class ReservationModel {
             }
         }
         return true;
+    }
+
+    public boolean isDateInThePast(Date date) {
+        return dateUtils.isDateInThePast(date);
+    }
+
+    public boolean isEndDateBeforeStartDate(Date endDate, Date startDate) {
+        return dateUtils.isEndDateBeforeStartDate(endDate, startDate);
     }
 }

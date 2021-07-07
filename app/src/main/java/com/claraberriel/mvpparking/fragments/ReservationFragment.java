@@ -15,6 +15,7 @@ import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.mvp.model.ReservationModel;
 import com.claraberriel.mvpparking.mvp.presenter.ReservationPresenter;
 import com.claraberriel.mvpparking.mvp.view.ReservationView;
+import com.claraberriel.mvpparking.utilities.DateUtils;
 
 public class ReservationFragment extends Fragment {
     public static final String PARKING_KEY  = "PARKING";
@@ -46,7 +47,7 @@ public class ReservationFragment extends Fragment {
         binding.endDateTime.setInputType(InputType.TYPE_NULL);
 
         Parking parking = getArguments().getParcelable(PARKING_KEY);
-        presenter = new ReservationPresenter(new ReservationView(this, binding), new ReservationModel(parking));
+        presenter = new ReservationPresenter(new ReservationView(this, binding), new ReservationModel(parking, new DateUtils()));
 
         setListeners();
 
