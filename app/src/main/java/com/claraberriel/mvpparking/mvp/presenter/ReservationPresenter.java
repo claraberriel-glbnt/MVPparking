@@ -6,13 +6,12 @@ import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
 import com.claraberriel.mvpparking.mvp.model.ReservationModel;
 import com.claraberriel.mvpparking.mvp.view.ReservationView;
-import com.claraberriel.mvpparking.utilities.DateUtils;
 
 import java.util.Date;
 
 public class ReservationPresenter {
-    private final ReservationView reservationView;
-    private final ReservationModel reservationModel;
+    ReservationView reservationView;
+    ReservationModel reservationModel;
 
     public ReservationPresenter(ReservationView reservationView, ReservationModel reservationModel) {
         this.reservationView = reservationView;
@@ -52,15 +51,15 @@ public class ReservationPresenter {
      * Validators: check for error and exceptions
      */
 
-    private boolean areDatesValid() {
+    boolean areDatesValid() {
         Date startDate = reservationView.getStartDate();
         Date endDate = reservationView.getEndDate();
 
         if (startDate != null && endDate != null) {
-            if (DateUtils.isDateInThePast(startDate) || DateUtils.isDateInThePast(endDate)) {
+            if (reservationModel.isDateInThePast(startDate) || reservationModel.isDateInThePast(endDate)) {
                 reservationView.showErrorNoReservationInThePast();
                 return false;
-            } else if (DateUtils.isEndDateBeforeStartDate(endDate, startDate)) {
+            } else if (reservationModel.isEndDateBeforeStartDate(endDate, startDate)) {
                 reservationView.showBackToTheFuture();
                 return false;
             } else {
