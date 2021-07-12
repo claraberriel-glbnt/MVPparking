@@ -55,8 +55,8 @@ public class ReservationFragment extends Fragment {
     }
 
     private void setListeners() {
-        binding.startDateTime.setOnClickListener(view -> presenter.onFrom());
-        binding.endDateTime.setOnClickListener(view -> presenter.onTo());
+        binding.startDateTime.setOnClickListener(view -> presenter.onFromClicked());
+        binding.endDateTime.setOnClickListener(view -> presenter.onToClicked());
         binding.reserveBtnSchedule.setOnClickListener(view -> {
             if(presenter.onSchedule()){
                 delegate.onReservationFragmentButtonClicked(presenter.getParkingWithReservations());

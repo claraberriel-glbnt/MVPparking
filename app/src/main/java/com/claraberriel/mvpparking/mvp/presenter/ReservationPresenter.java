@@ -18,7 +18,7 @@ public class ReservationPresenter {
         this.reservationModel = reservationModel;
     }
 
-    public Parking getParkingWithReservations(){
+    public Parking getParkingWithReservations() {
         return reservationModel.getParking();
     }
 
@@ -26,11 +26,11 @@ public class ReservationPresenter {
      * Event Handlers
      */
 
-    public void onFrom() {
+    public void onFromClicked() {
         reservationView.startDateTimeDialog();
     }
 
-    public void onTo() {
+    public void onToClicked() {
         reservationView.endDateTimeDialog();
     }
 
@@ -38,7 +38,7 @@ public class ReservationPresenter {
         if (areDatesValid() && isParkingNumberValid() && isSecurityCodeValid()) {
             Reservation reservation = new Reservation(reservationView.getStartDate().getTime(),
                     reservationView.getEndDate().getTime(),
-                    reservationView.getParkingNumber(),
+                    reservationModel.getParkingNumber(reservationView.getParkingNumber()),
                     reservationView.getSecurityCode());
             reservationModel.addReservation(reservation);
             reservationView.showReservationSuccess();
@@ -55,29 +55,28 @@ public class ReservationPresenter {
         Date startDate = reservationView.getStartDate();
         Date endDate = reservationView.getEndDate();
 
-        if (startDate != null && endDate != null) {
-            if (reservationModel.isDateInThePast(startDate) || reservationModel.isDateInThePast(endDate)) {
-                reservationView.showErrorNoReservationInThePast();
-                return false;
-            } else if (reservationModel.isEndDateBeforeStartDate(endDate, startDate)) {
-                reservationView.showBackToTheFuture();
-                return false;
-            } else {
-                return true;
-            }
-        } else {
+        if (startDate == null || endDate == null) {
             reservationView.showMissingField();
             return false;
         }
+        if (reservationModel.isDateInThePast(startDate) || reservationModel.isDateInThePast(endDate)) {
+            reservationView.showErrorNoReservationInThePast();
+            return false;
+        } else if (reservationModel.isEndDateBeforeStartDate(startDate, endDate)) {
+            reservationView.showBackToTheFuture();
+            return false;
+        }
+        return true;
     }
 
-    public boolean isParkingNumberValid() {
+    boolean isParkingNumberValid() {
         try {
-            int parkingNumber = reservationView.getParkingNumber();
-            if (parkingNumber <= reservationModel.getParking().getParkingSize()) {
+            int parkingNumber = reservationModel.getParkingNumber(reservationView.getParkingNumber());
+            int parkingSize = reservationModel.getParkingSize();
+            if (parkingNumber <= parkingSize) {
                 return true;
             } else {
-                reservationView.showLargeNumber(parkingNumber);
+                reservationView.showLargeNumber(parkingSize);
                 return false;
             }
         } catch (NumberFormatException e) {
@@ -91,7 +90,7 @@ public class ReservationPresenter {
         }
     }
 
-    private boolean isSecurityCodeValid() {
+    boolean isSecurityCodeValid() {
         String securityCode = reservationView.getSecurityCode();
 
         if (securityCode != null) {
