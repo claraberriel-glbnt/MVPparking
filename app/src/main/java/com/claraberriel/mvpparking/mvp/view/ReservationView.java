@@ -51,12 +51,8 @@ public class ReservationView extends FragmentView {
         return endDatePicker != null ? endDatePicker.getDate() : null;
     }
 
-    public int getParkingNumber() throws NumberFormatException {
-            int result = Integer.parseInt(reservationBinding.parkingNumber.getText().toString());
-            if (result <= 0) {
-                throw new IllegalArgumentException();
-            }
-            return result;
+    public String getParkingNumber() throws NumberFormatException {
+            return reservationBinding.parkingNumber.getText().toString();
     }
 
     public String getSecurityCode() {

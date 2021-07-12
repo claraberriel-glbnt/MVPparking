@@ -57,7 +57,7 @@ public class ParkingSizePresenterTest {
     }
 
     @Test
-    public void onSumbit_zeroSize_showZeroNotAccepted() {
+    public void onSubmit_zeroSize_showZeroNotAccepted() {
         // Given size equal or less than zero
         when(view.getParkingSize()).thenReturn(0);
         doThrow(new IllegalArgumentException()).when(model).setParkingSize(0);

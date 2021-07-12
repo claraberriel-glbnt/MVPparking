@@ -16,23 +16,25 @@ public class ReservationModel {
         this.dateUtils = dateUtils;
     }
 
-    public Parking getParking() {
-        return parking;
-    }
-
-    public ArrayList<Reservation> getReservationsList() {
-        return parking.getReservations();
-    }
-
-    public void addReservation(Reservation reservation) {
-        if (validateAddReservation(reservation)) {
-            ArrayList<Reservation> reservations = getReservationsList();
-            reservations.add(reservation);
+    public int getParkingNumber(String parkingNumber) throws IllegalArgumentException {
+        int result = Integer.parseInt(parkingNumber);
+        if (result <= 0) {
+            throw new IllegalArgumentException();
         }
+        return result;
+    }
+
+    public boolean addReservation(Reservation reservation) {
+        if (validateAddReservation(reservation)) {
+            ArrayList<Reservation> reservations = parking.getReservations();
+            reservations.add(reservation);
+            return true;
+        }
+        return false;
     }
 
     public boolean validateAddReservation(Reservation reservation) {
-        ArrayList<Reservation> reservations = getReservationsList();
+        ArrayList<Reservation> reservations = parking.getReservations();
         if (reservations.size() == 0) {
             return true;
         }
@@ -50,7 +52,15 @@ public class ReservationModel {
         return dateUtils.isDateInThePast(date);
     }
 
-    public boolean isEndDateBeforeStartDate(Date endDate, Date startDate) {
-        return dateUtils.isEndDateBeforeStartDate(endDate, startDate);
+    public boolean isEndDateBeforeStartDate(Date startDate, Date endDate) {
+        return dateUtils.isEndDateBeforeStartDate(startDate, endDate);
+    }
+
+    public int getParkingSize() {
+        return parking.getParkingSize();
+    }
+
+    public Parking getParking() {
+        return parking;
     }
 }

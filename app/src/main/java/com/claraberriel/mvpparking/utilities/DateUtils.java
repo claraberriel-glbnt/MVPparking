@@ -8,5 +8,5 @@ public class DateUtils {
         return date.before(new Date());
     }
 
-    public boolean isEndDateBeforeStartDate(Date endDate, Date startDate) { return endDate.before(startDate); }
+    public boolean isEndDateBeforeStartDate(Date startDate, Date endDate) { return endDate.before(startDate); }
 }
