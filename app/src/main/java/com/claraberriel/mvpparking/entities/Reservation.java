@@ -80,7 +80,7 @@ public class Reservation implements Parcelable {
     public Reservation() {
     }
 
-    protected Reservation(Parcel in) {
+    public Reservation(Parcel in) {
         this.parkingNumber = in.readInt();
         this.startDateTime = in.readLong();
         this.endDateTime = in.readLong();
