@@ -33,7 +33,7 @@ public class ReservationModel {
         return false;
     }
 
-    public boolean validateAddReservation(Reservation reservation) {
+    private boolean validateAddReservation(Reservation reservation) {
         ArrayList<Reservation> reservations = parking.getReservations();
         if (reservations.size() == 0) {
             return true;
