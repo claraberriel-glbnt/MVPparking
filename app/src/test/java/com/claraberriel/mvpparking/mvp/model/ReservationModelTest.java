@@ -19,7 +19,7 @@ public class ReservationModelTest {
     public void setUp() {
         Parking parking = new Parking(10);
         DateUtils dateUtils = new DateUtils();
-        model = new ReservationModel(parking, dateUtils); //ToDo override local
+        model = new ReservationModel(parking, dateUtils);
     }
 
     @Test
@@ -55,12 +55,7 @@ public class ReservationModelTest {
     }
 
     @Test
-    public void validateAddReservation_firstReservation_isTrue() {
-        Assert.assertTrue(model.validateAddReservation(new Reservation()));
-    }
-
-    @Test
-    public void validateAddReservation_secondReservationDifferentParkingNumber_isTrue() {
+    public void addReservation_secondReservationDifferentParkingNumber_isTrue() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date startDateJohn = calendar.getTime();
@@ -72,27 +67,28 @@ public class ReservationModelTest {
         calendar.add(Calendar.DAY_OF_YEAR, 2);
         Date endDateDoe = calendar.getTime();
 
-        Assert.assertTrue(model.validateAddReservation(new Reservation(startDateJohn.getTime(), endDateJohn.getTime(), 5, "john")));
-        Assert.assertTrue(model.validateAddReservation(new Reservation(startDateDoe.getTime(), endDateDoe.getTime(), 6, "doe")));
+        Assert.assertTrue(model.addReservation(new Reservation(startDateJohn.getTime(), endDateJohn.getTime(), 5, "john")));
+        Assert.assertTrue(model.addReservation(new Reservation(startDateDoe.getTime(), endDateDoe.getTime(), 6, "doe")));
     }
 
     @Test
-    public void validateAddReservation_secondReservationStartDatelessThanFirstReservationEndDate_isFalse() {
+    public void addReservation_secondReservationStartDatelessThanFirstReservationEndDate_isFalse() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date startDateJohn = calendar.getTime();
         calendar.add(Calendar.DAY_OF_YEAR, 3);
         Date endDateJohn = calendar.getTime();
 
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Calendar calendarDoe = Calendar.getInstance();
+        calendarDoe.add(Calendar.DAY_OF_YEAR, 1);
         Date startDateDoe = calendar.getTime();
-        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        calendarDoe.add(Calendar.DAY_OF_YEAR, 2);
         Date endDateDoe = calendar.getTime();
 
-        Assert.assertTrue(model.validateAddReservation(new Reservation(startDateJohn.getTime(),
+        Assert.assertTrue(model.addReservation(new Reservation(startDateJohn.getTime(),
                 endDateJohn.getTime(), 5, "john")));
-        Assert.assertFalse(model.validateAddReservation(new Reservation(startDateDoe.getTime(),
-                endDateDoe.getTime(), 5, "doe"))); //ToDo Assertion Error
+        Assert.assertFalse(model.addReservation(new Reservation(startDateDoe.getTime(),
+                endDateDoe.getTime(), 5, "doe")));
     }
 
     @Test
