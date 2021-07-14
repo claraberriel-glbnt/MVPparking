@@ -16,7 +16,7 @@ import static com.claraberriel.mvpparking.fragments.ReservationFragment.PARKING_
 
 public class NavActivity extends AppCompatActivity {
 
-    public static final String SIZE_KEY = "SIZE";
+    public static final String PARKING_SIZE_EXTRA = "SIZE";
     private static final String RESERVE_FRAGMENT_TAG = "RESERVE_FRAGMENT";
     private static final String RELEASE_FRAGMENT_TAG = "RELEASE_FRAGMENT";
     private static final String AUTO_RELEASE_FRAGMENT_TAG = "AUTO_RELEASE_FRAGMENT";
@@ -31,7 +31,7 @@ public class NavActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle(R.string.main_title_parking_size);
 
-        int parkingSize = getIntent().getIntExtra(SIZE_KEY, 0);
+        int parkingSize = getIntent().getIntExtra(PARKING_SIZE_EXTRA, 0);
         presenter = new NavPresenter(parkingSize);
 
         setListeners();

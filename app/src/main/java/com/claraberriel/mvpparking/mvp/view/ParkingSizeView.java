@@ -9,7 +9,7 @@ import com.claraberriel.mvpparking.R;
 import com.claraberriel.mvpparking.activities.NavActivity;
 import com.claraberriel.mvpparking.databinding.ActivityParkingSizeBinding;
 
-import static com.claraberriel.mvpparking.activities.NavActivity.SIZE_KEY;
+import static com.claraberriel.mvpparking.activities.NavActivity.PARKING_SIZE_EXTRA;
 
 
 /**
@@ -38,7 +38,7 @@ public class ParkingSizeView extends ParkingActivityView {
     public void goToNavActivity(int size) {
         if (context != null) {
             Intent intent = new Intent(context, NavActivity.class);
-            intent.putExtra(SIZE_KEY, size);
+            intent.putExtra(PARKING_SIZE_EXTRA, size);
             context.startActivity(intent);
         }
     }

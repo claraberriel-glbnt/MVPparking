@@ -9,7 +9,7 @@ public class Reservation implements Parcelable {
     private int parkingNumber;
     private String securityCode;
 
-    public Reservation(long startDateTime, long endDateTime, int parkingNumber,String securityCode) {
+    public Reservation(long startDateTime, long endDateTime, int parkingNumber, String securityCode) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.parkingNumber = parkingNumber;
