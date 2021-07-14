@@ -2,11 +2,11 @@ package com.claraberriel.mvpparking.utilities;
 
 import java.util.Date;
 
-public class DateUtils {
+public abstract class DateUtils {
 
-    public boolean isDateInThePast(Date date){
+    public static boolean isDateInThePast(Date date){
         return date.before(new Date());
     }
 
-    public boolean isEndDateBeforeStartDate(Date startDate, Date endDate) { return endDate.before(startDate); }
+    public static boolean isEndDateBeforeStartDate(Date startDate, Date endDate) { return endDate.before(startDate); }
 }

@@ -2,16 +2,19 @@ package com.claraberriel.mvpparking.mvp.presenter;
 
 import android.util.Log;
 
+import androidx.annotation.VisibleForTesting;
+
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
 import com.claraberriel.mvpparking.mvp.model.ReservationModel;
 import com.claraberriel.mvpparking.mvp.view.ReservationView;
+import com.claraberriel.mvpparking.utilities.DateUtils;
 
 import java.util.Date;
 
 public class ReservationPresenter {
-    ReservationView reservationView;
-    ReservationModel reservationModel;
+    public ReservationView reservationView;
+    public ReservationModel reservationModel;
 
     public ReservationPresenter(ReservationView reservationView, ReservationModel reservationModel) {
         this.reservationView = reservationView;
@@ -51,7 +54,8 @@ public class ReservationPresenter {
      * Validators: check for error and exceptions
      */
 
-    boolean areDatesValid() {
+    @VisibleForTesting
+    protected boolean areDatesValid() {
         Date startDate = reservationView.getStartDate();
         Date endDate = reservationView.getEndDate();
 
@@ -59,26 +63,26 @@ public class ReservationPresenter {
             reservationView.showMissingField();
             return false;
         }
-        if (reservationModel.isDateInThePast(startDate) || reservationModel.isDateInThePast(endDate)) {
+        if (DateUtils.isDateInThePast(startDate) || DateUtils.isDateInThePast(endDate)) {
             reservationView.showErrorNoReservationInThePast();
             return false;
-        } else if (reservationModel.isEndDateBeforeStartDate(startDate, endDate)) {
+        } else if (DateUtils.isEndDateBeforeStartDate(startDate, endDate)) {
             reservationView.showBackToTheFuture();
             return false;
         }
         return true;
     }
 
-    boolean isParkingNumberValid() {
+    @VisibleForTesting
+    protected boolean isParkingNumberValid() {
         try {
             int parkingNumber = reservationModel.getParkingNumber(reservationView.getParkingNumber());
             int parkingSize = reservationModel.getParkingSize();
-            if (parkingNumber <= parkingSize) {
-                return true;
-            } else {
+            if (parkingNumber > parkingSize) {
                 reservationView.showLargeNumber(parkingSize);
                 return false;
             }
+            return true;
         } catch (NumberFormatException e) {
             Log.e(ReservationPresenter.class.getSimpleName(), e.toString());
             reservationView.showInvalidNumber();
@@ -90,7 +94,8 @@ public class ReservationPresenter {
         }
     }
 
-    boolean isSecurityCodeValid() {
+    @VisibleForTesting
+    protected boolean isSecurityCodeValid() {
         String securityCode = reservationView.getSecurityCode();
 
         if (securityCode != null) {

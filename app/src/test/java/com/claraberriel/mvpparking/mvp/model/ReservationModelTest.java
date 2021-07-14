@@ -2,7 +2,6 @@ package com.claraberriel.mvpparking.mvp.model;
 
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
-import com.claraberriel.mvpparking.utilities.DateUtils;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,8 +17,7 @@ public class ReservationModelTest {
     @Before
     public void setUp() {
         Parking parking = new Parking(10);
-        DateUtils dateUtils = new DateUtils();
-        model = new ReservationModel(parking, dateUtils);
+        model = new ReservationModel(parking);
     }
 
     @Test
@@ -139,7 +137,7 @@ public class ReservationModelTest {
     @Test
     public void getParking() {
         Parking parking = new Parking(10);
-        model = new ReservationModel(parking, new DateUtils());
+        model = new ReservationModel(parking);
         Assert.assertEquals(parking, this.model.getParking());
     }
 }

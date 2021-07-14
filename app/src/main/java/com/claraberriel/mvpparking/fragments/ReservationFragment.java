@@ -15,10 +15,9 @@ import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.mvp.model.ReservationModel;
 import com.claraberriel.mvpparking.mvp.presenter.ReservationPresenter;
 import com.claraberriel.mvpparking.mvp.view.ReservationView;
-import com.claraberriel.mvpparking.utilities.DateUtils;
 
 public class ReservationFragment extends Fragment {
-    public static final String PARKING_KEY  = "PARKING";
+    public static final String PARKING_KEY = "PARKING";
     private ReservationPresenter presenter;
     private FragmentReservationBinding binding;
     private ReservationFragmentDelegate delegate;
@@ -26,14 +25,14 @@ public class ReservationFragment extends Fragment {
     public ReservationFragment() {
     }
 
-    public interface ReservationFragmentDelegate{
+    public interface ReservationFragmentDelegate {
         void onReservationFragmentButtonClicked(Parking parking);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof ReservationFragmentDelegate){
+        if (context instanceof ReservationFragmentDelegate) {
             delegate = (ReservationFragmentDelegate) context;
         }
     }
@@ -47,7 +46,7 @@ public class ReservationFragment extends Fragment {
         binding.endDateTime.setInputType(InputType.TYPE_NULL);
 
         Parking parking = getArguments().getParcelable(PARKING_KEY);
-        presenter = new ReservationPresenter(new ReservationView(this, binding), new ReservationModel(parking, new DateUtils()));
+        presenter = new ReservationPresenter(new ReservationView(this, binding), new ReservationModel(parking));
 
         setListeners();
 
@@ -58,7 +57,7 @@ public class ReservationFragment extends Fragment {
         binding.startDateTime.setOnClickListener(view -> presenter.onFromClicked());
         binding.endDateTime.setOnClickListener(view -> presenter.onToClicked());
         binding.reserveBtnSchedule.setOnClickListener(view -> {
-            if(presenter.onSchedule()){
+            if (presenter.onSchedule()) {
                 delegate.onReservationFragmentButtonClicked(presenter.getParkingWithReservations());
             }
         });

@@ -2,18 +2,14 @@ package com.claraberriel.mvpparking.mvp.model;
 
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
-import com.claraberriel.mvpparking.utilities.DateUtils;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ReservationModel {
     private Parking parking;
-    DateUtils dateUtils;
 
-    public ReservationModel(Parking parking, DateUtils dateUtils) {
+    public ReservationModel(Parking parking) {
         this.parking = parking;
-        this.dateUtils = dateUtils;
     }
 
     public int getParkingNumber(String parkingNumber) throws IllegalArgumentException {
@@ -34,26 +30,16 @@ public class ReservationModel {
     }
 
     private boolean validateAddReservation(Reservation reservation) {
-        ArrayList<Reservation> reservations = parking.getReservations();
-        if (reservations.size() == 0) {
+        if (parking.getReservations().size() == 0) {
             return true;
         }
-        for (Reservation reservationInList : reservations) {
-            if (reservation.getParkingNumber() != reservationInList.getParkingNumber()) {
-                return true;
-            } else {
-                return reservation.getStartDateTime() > reservationInList.getEndDateTime();
-            }
+        for (Reservation reservationInList : parking.getReservations()) {
+            if (reservation.getParkingNumber() == reservationInList.getParkingNumber()
+                    && reservation.getStartDateTime() < reservationInList.getEndDateTime()) {
+                return false;
+            } //ToDo fix tests
         }
         return true;
-    }
-
-    public boolean isDateInThePast(Date date) {
-        return dateUtils.isDateInThePast(date);
-    }
-
-    public boolean isEndDateBeforeStartDate(Date startDate, Date endDate) {
-        return dateUtils.isEndDateBeforeStartDate(startDate, endDate);
     }
 
     public int getParkingSize() {
