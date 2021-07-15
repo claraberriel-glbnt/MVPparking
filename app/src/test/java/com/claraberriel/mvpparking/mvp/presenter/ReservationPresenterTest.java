@@ -1,18 +1,20 @@
 package com.claraberriel.mvpparking.mvp.presenter;
 
+import android.util.Log;
+
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
 import com.claraberriel.mvpparking.mvp.model.ReservationModel;
 import com.claraberriel.mvpparking.mvp.view.ReservationView;
 import com.claraberriel.mvpparking.utilities.DateUtils;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.RobolectricTestRunner;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -20,22 +22,27 @@ import java.util.Date;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(RobolectricTestRunner.class)
 public class ReservationPresenterTest {
     private ReservationPresenter presenter;
     @Mock
     private ReservationModel model;
     @Mock
     private ReservationView view;
+    private MockedStatic<Log> logMockedStatic;
+    private MockedStatic<DateUtils> dateUtilsMockedStatic;
+
 
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         presenter = new ReservationPresenter(view, model);
+        logMockedStatic = mockStatic(Log.class);
+        dateUtilsMockedStatic = mockStatic(DateUtils.class);
     }
 
     /**
@@ -95,9 +102,10 @@ public class ReservationPresenterTest {
 
         when(view.getStartDate()).thenReturn(startDate);
         when(view.getEndDate()).thenReturn(endDate);
-        when(DateUtils.isDateInThePast(startDate)).thenReturn(false);
-        when(DateUtils.isDateInThePast(endDate)).thenReturn(false);
-        when(DateUtils.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(false);
+
+        dateUtilsMockedStatic.when(() -> DateUtils.isDateInThePast(startDate)).thenReturn(false);
+        dateUtilsMockedStatic.when(() -> DateUtils.isDateInThePast(endDate)).thenReturn(false);
+        dateUtilsMockedStatic.when(() -> DateUtils.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(false);
 
         boolean valid = presenter.areDatesValid();
 
@@ -191,8 +199,8 @@ public class ReservationPresenterTest {
 
         when(view.getStartDate()).thenReturn(startDate);
         when(view.getEndDate()).thenReturn(endDate);
-        when(DateUtils.isDateInThePast(startDate)).thenReturn(true);
-        when(DateUtils.isDateInThePast(endDate)).thenReturn(true);
+        dateUtilsMockedStatic.when(() -> DateUtils.isDateInThePast(startDate)).thenReturn(true);
+        dateUtilsMockedStatic.when(() -> DateUtils.isDateInThePast(endDate)).thenReturn(true);
 
         boolean valid = presenter.areDatesValid();
 
@@ -210,9 +218,9 @@ public class ReservationPresenterTest {
         when(view.getStartDate()).thenReturn(startDate);
         when(view.getEndDate()).thenReturn(endDate);
 
-        when(DateUtils.isDateInThePast(startDate)).thenReturn(false);
-        when(DateUtils.isDateInThePast(endDate)).thenReturn(false);
-        when(DateUtils.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(true);
+        dateUtilsMockedStatic.when(() -> DateUtils.isDateInThePast(startDate)).thenReturn(false);
+        dateUtilsMockedStatic.when(() -> DateUtils.isDateInThePast(endDate)).thenReturn(false);
+        dateUtilsMockedStatic.when(() -> DateUtils.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(true);
 
         boolean valid = presenter.areDatesValid();
 
@@ -286,4 +294,11 @@ public class ReservationPresenterTest {
         verify(view).showMissingField();
         Assert.assertFalse(valid);
     }
+
+    @After
+    public void tearDown() {
+        logMockedStatic.close();
+        dateUtilsMockedStatic.close();
+    }
+
 }
