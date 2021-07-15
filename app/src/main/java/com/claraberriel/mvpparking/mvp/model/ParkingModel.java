@@ -1,7 +1,5 @@
 package com.claraberriel.mvpparking.mvp.model;
 
-import java.util.ArrayList;
-
 public class ParkingModel {
     private int parkingSize;
 

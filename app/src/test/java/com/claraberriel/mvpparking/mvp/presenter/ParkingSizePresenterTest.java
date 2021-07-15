@@ -37,11 +37,13 @@ public class ParkingSizePresenterTest {
     public void onSubmit_validSize_showParkAmount() {
         // Given certain valid size
         when(view.getParkingSize()).thenReturn(10);
+        when(model.getParkingSize()).thenReturn(10);
         // When Submit button is pressed
         presenter.onSubmit();
         // Then check if message shown is correct and variable is set
         verify(view).showParkAmount(10);
         verify(model).setParkingSize(10);
+        verify(view).goToNavActivity(model.getParkingSize());
     }
 
     @Test
@@ -57,7 +59,7 @@ public class ParkingSizePresenterTest {
     }
 
     @Test
-    public void onSumbit_zeroSize_showZeroNotAccepted() {
+    public void onSubmit_zeroSize_showZeroNotAccepted() {
         // Given size equal or less than zero
         when(view.getParkingSize()).thenReturn(0);
         doThrow(new IllegalArgumentException()).when(model).setParkingSize(0);

@@ -15,4 +15,20 @@
     <string name="main_error_show">Error not able to set amount</string>
     <string name="main_img_valet">image of a Valet</string>
     <string name="main_msg_nozero">Please set amount larger than 0</string>
+    <string name="nav_btn_reserve">Reserve</string>
+    <string name="nav_btn_release">Release</string>
+    <string name="nav_msg_toast_reserve">Please fill in the fields to make a reservation</string>
+    <string name="nav_msg_toast_release">You cancel your reservation here</string>
+    <string name="nav_btn_auto_release">Auto Release</string>
+    <string name="reserve_msg_create">Create a reservation</string>
+    <string name="reserve_edittext_start">From</string>
+    <string name="reserve_edittext_to">To</string>
+    <string name="reservationview_err_msg_inthepast">You can\'t schedule a reservation in the past</string>
+    <string name="reservationview_err_msg_missingfield">You\'re missing a field</string>
+    <string name="reservationview_err_msg_delorean">Unless you\'re driving the DeLorean time machine, you can\'t pick up your car before you park it</string>
+    <string name="reservationview_err_msg_numberformat">Parking Number provided does not have the appropriate format</string>
+    <string name="reservationview_err_msg_zero">Parking Number should be larger than zero</string>
+    <string name="reservationview_err_msg_large">We have parking numbers available up to %d</string>
+    <string name="reservationview_err_msg_largerthan3">Your security code should have at least 3 characters</string>
+    <string name="reservationview_msg_success">Reservation scheduled successfully</string>
 </resources>

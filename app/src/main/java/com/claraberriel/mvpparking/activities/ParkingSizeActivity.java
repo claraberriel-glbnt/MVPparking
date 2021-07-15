@@ -1,25 +1,27 @@
-package com.claraberriel.mvpparking;
+package com.claraberriel.mvpparking.activities;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.claraberriel.mvpparking.databinding.ActivityParkingSizeBinding;
 import com.claraberriel.mvpparking.mvp.model.ParkingModel;
+import com.claraberriel.mvpparking.mvp.presenter.NavPresenter;
 import com.claraberriel.mvpparking.mvp.presenter.ParkingSizePresenter;
 import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class ParkingSizeActivity extends AppCompatActivity {
 
-import com.claraberriel.mvpparking.databinding.ActivityMainBinding;
-
-public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
+    private ActivityParkingSizeBinding binding;
     private ParkingSizePresenter presenter;
+    private NavPresenter navPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityParkingSizeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         presenter = new ParkingSizePresenter(new ParkingModel(),
@@ -31,5 +33,4 @@ public class MainActivity extends AppCompatActivity {
     private void setListeners() {
         binding.buttonMainSubmit.setOnClickListener(view -> presenter.onSubmit());
     }
-
 }
