@@ -39,11 +39,10 @@ public class ReservationPresenter {
 
     public boolean onSchedule() {
         if (areDatesValid() && isParkingNumberValid() && isSecurityCodeValid()) {
-            Reservation reservation = new Reservation(reservationView.getStartDate().getTime(),
+            reservationModel.addReservation(new Reservation(reservationView.getStartDate().getTime(),
                     reservationView.getEndDate().getTime(),
                     reservationModel.getParkingNumber(reservationView.getParkingNumber()),
-                    reservationView.getSecurityCode());
-            reservationModel.addReservation(reservation);
+                    reservationView.getSecurityCode()));
             reservationView.showReservationSuccess();
             return true;
         }

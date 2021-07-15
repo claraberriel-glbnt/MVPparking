@@ -38,7 +38,13 @@ public class ReservationModelTest {
 
     @Test
     public void addReservation_firstReservation_isTrue() {
-        Assert.assertTrue(model.addReservation(new Reservation()));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date startDate = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        Date endDate = calendar.getTime();
+
+        Assert.assertTrue(model.addReservation(new Reservation(startDate.getTime(), endDate.getTime(), 3, "code")));
     }
 
     @Test
@@ -68,6 +74,26 @@ public class ReservationModelTest {
 
         Assert.assertTrue(model.addReservation(new Reservation(startDateJohn.getTime(), endDateJohn.getTime(), 5, "john")));
         Assert.assertTrue(model.addReservation(new Reservation(startDateDoe.getTime(), endDateDoe.getTime(), 6, "doe")));
+    }
+
+    @Test
+    public void addReservation_secondReservationStartDatelessThanFirstReservationEndDate_isTrue() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date startDateJohn = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, 3);
+        Date endDateJohn = calendar.getTime();
+
+        Calendar calendarDoe = Calendar.getInstance();
+        calendarDoe.add(Calendar.DAY_OF_YEAR, 4);
+        Date startDateDoe = calendar.getTime();
+        calendarDoe.add(Calendar.DAY_OF_YEAR, 2);
+        Date endDateDoe = calendar.getTime();
+
+        Assert.assertTrue(model.addReservation(new Reservation(startDateJohn.getTime(),
+                endDateJohn.getTime(), 5, "john")));
+        Assert.assertTrue(model.addReservation(new Reservation(startDateDoe.getTime(),
+                endDateDoe.getTime(), 5, "doe")));
     }
 
     @Test

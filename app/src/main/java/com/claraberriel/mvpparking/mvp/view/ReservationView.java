@@ -26,7 +26,6 @@ public class ReservationView extends FragmentView {
     /**
      * Show Date and Time Dialogs
      */
-
     public void startDateTimeDialog() {
         startDatePicker.show();
     }
@@ -38,7 +37,6 @@ public class ReservationView extends FragmentView {
     /**
      * Getters @return values from EditTexts inputs
      */
-
     public Date getStartDate() {
         return startDatePicker != null ? startDatePicker.getDate() : null;
     }
@@ -58,7 +56,6 @@ public class ReservationView extends FragmentView {
     /**
      * Toast Messages @param message to be displayed
      */
-
     //reusable
     private void showToast(String message) {
         if (getContext() != null) {

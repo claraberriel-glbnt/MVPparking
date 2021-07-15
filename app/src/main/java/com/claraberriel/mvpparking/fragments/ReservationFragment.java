@@ -22,9 +22,6 @@ public class ReservationFragment extends Fragment {
     private FragmentReservationBinding binding;
     private ReservationFragmentDelegate delegate;
 
-    public ReservationFragment() {
-    }
-
     public interface ReservationFragmentDelegate {
         void onReservationFragmentButtonClicked(Parking parking);
     }

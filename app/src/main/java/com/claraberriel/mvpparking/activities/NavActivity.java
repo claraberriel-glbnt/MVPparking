@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.claraberriel.mvpparking.R;
 import com.claraberriel.mvpparking.databinding.ActivityNavigationBinding;
+import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.fragments.AutoReleaseFragment;
 import com.claraberriel.mvpparking.fragments.ReleaseFragment;
 import com.claraberriel.mvpparking.fragments.ReservationFragment;
@@ -14,14 +15,14 @@ import com.claraberriel.mvpparking.mvp.presenter.NavPresenter;
 
 import static com.claraberriel.mvpparking.fragments.ReservationFragment.PARKING_KEY;
 
-public class NavActivity extends AppCompatActivity {
+public class NavActivity extends AppCompatActivity implements ReservationFragment.ReservationFragmentDelegate {
 
     public static final String PARKING_SIZE_EXTRA = "SIZE";
     private static final String RESERVE_FRAGMENT_TAG = "RESERVE_FRAGMENT";
     private static final String RELEASE_FRAGMENT_TAG = "RELEASE_FRAGMENT";
     private static final String AUTO_RELEASE_FRAGMENT_TAG = "AUTO_RELEASE_FRAGMENT";
     private ActivityNavigationBinding binding;
-    private NavPresenter presenter;
+    private NavPresenter navPresenter;
 
 
     @Override
@@ -32,7 +33,7 @@ public class NavActivity extends AppCompatActivity {
         setTitle(R.string.main_title_parking_size);
 
         int parkingSize = getIntent().getIntExtra(PARKING_SIZE_EXTRA, 0);
-        presenter = new NavPresenter(parkingSize);
+        navPresenter = new NavPresenter(parkingSize);
 
         setListeners();
     }
@@ -40,7 +41,7 @@ public class NavActivity extends AppCompatActivity {
     public void setListeners() {
         binding.buttonReservation.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
-            bundle.putParcelable(PARKING_KEY, presenter.getParking());
+            bundle.putParcelable(PARKING_KEY, navPresenter.getParking());
             ReservationFragment reservationFragment = new ReservationFragment();
             reservationFragment.setArguments(bundle);
             FragmentTransaction transactionReserve = getSupportFragmentManager().beginTransaction();
@@ -59,5 +60,10 @@ public class NavActivity extends AppCompatActivity {
             transactionAuto.replace(R.id.fragment_container, new AutoReleaseFragment(), AUTO_RELEASE_FRAGMENT_TAG);
             transactionAuto.commit();
         });
+    }
+
+    @Override
+    public void onReservationFragmentButtonClicked(Parking parking){
+        navPresenter.setParking(parking);
     }
 }

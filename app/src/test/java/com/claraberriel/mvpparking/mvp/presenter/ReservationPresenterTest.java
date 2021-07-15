@@ -26,11 +26,11 @@ import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 public class ReservationPresenterTest {
-    ReservationPresenter presenter;
+    private ReservationPresenter presenter;
     @Mock
-    ReservationModel model;
+    private ReservationModel model;
     @Mock
-    ReservationView view;
+    private ReservationView view;
 
     @Before
     public void setUp() {
@@ -57,7 +57,7 @@ public class ReservationPresenterTest {
     }
 
     @Test
-    public void onSchedule_isTrue(){
+    public void onSchedule_validatedData_addsReservation_isTrue(){
         ReservationPresenter spyPresenter = spy(presenter);
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
