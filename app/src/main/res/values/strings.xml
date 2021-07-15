@@ -31,4 +31,9 @@
     <string name="reservationview_err_msg_large">We have parking numbers available up to %d</string>
     <string name="reservationview_err_msg_largerthan3">Your security code should have at least 3 characters</string>
     <string name="reservationview_msg_success">Reservation scheduled successfully</string>
+    <string name="release_hint_parking_security_code">Security Code</string>
+    <string name="release_btn_txt">Release</string>
+    <string name="release_hint_parking_lot_number">Parking Lot Number</string>
+    <string name="release_view_err_msg_no_match">We couldn\'t find a reservation with that security code on that lot</string>
+    <string name="reslease_view_msg_success">The reservation was canceled</string>
 </resources>
