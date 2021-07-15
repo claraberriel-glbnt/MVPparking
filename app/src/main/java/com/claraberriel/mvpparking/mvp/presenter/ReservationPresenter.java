@@ -13,8 +13,10 @@ import com.claraberriel.mvpparking.utilities.DateUtils;
 import java.util.Date;
 
 public class ReservationPresenter {
-    public ReservationView reservationView;
-    public ReservationModel reservationModel;
+    @VisibleForTesting
+    ReservationView reservationView;
+    @VisibleForTesting
+    ReservationModel reservationModel;
 
     public ReservationPresenter(ReservationView reservationView, ReservationModel reservationModel) {
         this.reservationView = reservationView;
@@ -54,7 +56,7 @@ public class ReservationPresenter {
      */
 
     @VisibleForTesting
-    protected boolean areDatesValid() {
+    boolean areDatesValid() {
         Date startDate = reservationView.getStartDate();
         Date endDate = reservationView.getEndDate();
 
@@ -73,7 +75,7 @@ public class ReservationPresenter {
     }
 
     @VisibleForTesting
-    protected boolean isParkingNumberValid() {
+    boolean isParkingNumberValid() {
         try {
             int parkingNumber = reservationModel.getParkingNumber(reservationView.getParkingNumber());
             int parkingSize = reservationModel.getParkingSize();
@@ -94,7 +96,7 @@ public class ReservationPresenter {
     }
 
     @VisibleForTesting
-    protected boolean isSecurityCodeValid() {
+    boolean isSecurityCodeValid() {
         String securityCode = reservationView.getSecurityCode();
         if (securityCode == null) {
             reservationView.showMissingField();

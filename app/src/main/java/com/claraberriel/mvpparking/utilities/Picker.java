@@ -11,9 +11,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Picker {
-    public static final String DATE_FORMAT = "yy-MM-dd HH:mm";
+    private static final String DATE_FORMAT = "yy-MM-dd HH:mm";
 
-    public Date date;
+    private Date date;
     private DatePickerDialog datePickerDialog;
 
     public Date getDate() {
