@@ -2,18 +2,23 @@
 <ScrollView android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/navy_blue"
+        tools:context=".fragments.ReleaseFragment">
 
         <TextView
             android:id="@+id/test_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Parking release"
-            android:textSize="24dp"
+            android:text="@string/release_msg_release_reservation"
+            android:textSize="20sp"
+            android:textColor="@color/bonjour"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +36,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:hint="@string/release_hint_parking_lot_number"
-            android:textColorHint="@color/design_default_color_primary_variant"
+            android:textColor="@color/hilt_gray"
+            android:textColorHint="@color/hilt_gray"
             android:inputType="number"
             app:layout_constraintTop_toBottomOf="@id/test_view"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,23 +53,24 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:hint="@string/release_hint_parking_security_code"
-            android:textColorHint="@color/design_default_color_primary_variant"
-            android:inputType="textPassword"
+            android:textColor="@color/hilt_gray"
+            android:textColorHint="@color/hilt_gray"
             android:maxLength="5"
             app:layout_constraintTop_toBottomOf="@id/input_parking_lot_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/button_parking_release" />
+            app:layout_constraintBottom_toTopOf="@id/btn_release" />
 
 
         <Button
-            android:id="@+id/button_parking_release"
+            android:id="@+id/btn_release"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:text="@string/release_btn_txt"
+            app:backgroundTint="@color/red"
             app:layout_constraintTop_toBottomOf="@id/input_parking_lot_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

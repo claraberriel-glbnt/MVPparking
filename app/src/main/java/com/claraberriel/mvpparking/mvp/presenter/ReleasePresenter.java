@@ -15,7 +15,7 @@ public class ReleasePresenter {
         this.releaseView = releaseView;
     }
 
-    public boolean onReleaseParkingPressed() {
+    public boolean onRelease() {
         Reservation reservation = new Reservation();
 
         reservation.setParkingNumber(releaseModel.getParkingNumber(releaseView.getParkingLotNumber()));

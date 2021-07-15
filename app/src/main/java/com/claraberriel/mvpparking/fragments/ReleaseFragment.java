@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.claraberriel.mvpparking.R;
 import com.claraberriel.mvpparking.databinding.FragmentReleaseBinding;
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.mvp.model.ReleaseModel;
@@ -29,7 +28,7 @@ public class ReleaseFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof ReleaseFragmentDelegate) {
             delegate = (ReleaseFragmentDelegate) context;
@@ -39,18 +38,19 @@ public class ReleaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        fragmentReleaseBinding = FragmentReleaseBinding.inflate(inflater, container, false);
+
         if(getArguments() != null) {
             Parking parking = getArguments().getParcelable(PARKING_KEY);
             releasePresenter = new ReleasePresenter(new ReleaseModel(parking), new ReleaseView(this, fragmentReleaseBinding));
         }
         setListeners();
-        return inflater.inflate(R.layout.fragment_release, container, false);
+        return fragmentReleaseBinding.getRoot();
     }
 
     private void setListeners() {
-        fragmentReleaseBinding.buttonParkingRelease.setOnClickListener(view ->
-        {
-            if (releasePresenter.onReleaseParkingPressed()) {
+        fragmentReleaseBinding.btnRelease.setOnClickListener(view -> {
+            if (releasePresenter.onRelease()) {
                 delegate.onReleaseFragmentButtonClicked(releasePresenter.getParkingWithReservations());
             }
         });
