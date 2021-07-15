@@ -97,17 +97,15 @@ public class ReservationPresenter {
     @VisibleForTesting
     protected boolean isSecurityCodeValid() {
         String securityCode = reservationView.getSecurityCode();
-
-        if (securityCode != null) {
-            if (securityCode.length() >= 3)
-                return true;
-            else {
-                reservationView.showLargerThanThree();
-                return false;
-            }
-        } else {
+        if (securityCode == null) {
             reservationView.showMissingField();
             return false;
         }
+        if (securityCode.length() < 3) {
+            reservationView.showLargerThanThree();
+            return false;
+        }
+        return true;
     }
+
 }

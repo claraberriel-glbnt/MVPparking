@@ -3,8 +3,6 @@ package com.claraberriel.mvpparking.mvp.model;
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
 
-import java.util.ArrayList;
-
 public class ReservationModel {
     private Parking parking;
 
@@ -22,8 +20,8 @@ public class ReservationModel {
 
     public boolean addReservation(Reservation reservation) {
         if (validateAddReservation(reservation)) {
-            ArrayList<Reservation> reservations = parking.getReservations();
-            reservations.add(reservation);
+            parking.getReservations();
+            parking.getReservations().add(reservation);
             return true;
         }
         return false;

@@ -11,15 +11,17 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Picker {
-    Date date;
+    public static final String DATE_FORMAT = "yy-MM-dd HH:mm";
+
+    public Date date;
     private DatePickerDialog datePickerDialog;
 
     public Date getDate() {
         return date;
     }
 
-    public Picker(EditText date_time) {
-        showDateTimeDialog(date_time);
+    public Picker(EditText dateTime) {
+        showDateTimeDialog(dateTime);
     }
 
     public void showDateTimeDialog(EditText date_time) {
@@ -37,7 +39,7 @@ public class Picker {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
 
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
                         date = calendar.getTime();
                         date_time.setText(simpleDateFormat.format(calendar.getTime()));
                     }

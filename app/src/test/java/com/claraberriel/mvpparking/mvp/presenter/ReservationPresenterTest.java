@@ -4,6 +4,7 @@ import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
 import com.claraberriel.mvpparking.mvp.model.ReservationModel;
 import com.claraberriel.mvpparking.mvp.view.ReservationView;
+import com.claraberriel.mvpparking.utilities.DateUtils;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -94,9 +95,9 @@ public class ReservationPresenterTest {
 
         when(view.getStartDate()).thenReturn(startDate);
         when(view.getEndDate()).thenReturn(endDate);
-        when(model.isDateInThePast(startDate)).thenReturn(false);
-        when(model.isDateInThePast(endDate)).thenReturn(false);
-        when(model.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(false);
+        when(DateUtils.isDateInThePast(startDate)).thenReturn(false);
+        when(DateUtils.isDateInThePast(endDate)).thenReturn(false);
+        when(DateUtils.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(false);
 
         boolean valid = presenter.areDatesValid();
 
@@ -190,8 +191,8 @@ public class ReservationPresenterTest {
 
         when(view.getStartDate()).thenReturn(startDate);
         when(view.getEndDate()).thenReturn(endDate);
-        when(model.isDateInThePast(startDate)).thenReturn(true);
-        when(model.isDateInThePast(endDate)).thenReturn(true);
+        when(DateUtils.isDateInThePast(startDate)).thenReturn(true);
+        when(DateUtils.isDateInThePast(endDate)).thenReturn(true);
 
         boolean valid = presenter.areDatesValid();
 
@@ -209,9 +210,9 @@ public class ReservationPresenterTest {
         when(view.getStartDate()).thenReturn(startDate);
         when(view.getEndDate()).thenReturn(endDate);
 
-        when(model.isDateInThePast(startDate)).thenReturn(false);
-        when(model.isDateInThePast(endDate)).thenReturn(false);
-        when(model.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(true);
+        when(DateUtils.isDateInThePast(startDate)).thenReturn(false);
+        when(DateUtils.isDateInThePast(endDate)).thenReturn(false);
+        when(DateUtils.isEndDateBeforeStartDate(startDate, endDate)).thenReturn(true);
 
         boolean valid = presenter.areDatesValid();
 

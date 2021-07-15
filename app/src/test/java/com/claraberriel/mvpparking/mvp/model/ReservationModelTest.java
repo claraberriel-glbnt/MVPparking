@@ -2,6 +2,7 @@ package com.claraberriel.mvpparking.mvp.model;
 
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
+import com.claraberriel.mvpparking.utilities.DateUtils;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -95,7 +96,7 @@ public class ReservationModelTest {
         calendar.add(Calendar.DAY_OF_YEAR, 0);
         Date date = calendar.getTime();
 
-        Assert.assertTrue(model.isDateInThePast(date));
+        Assert.assertTrue(DateUtils.isDateInThePast(date));
     }
 
     @Test
@@ -104,7 +105,7 @@ public class ReservationModelTest {
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date date = calendar.getTime();
 
-        Assert.assertFalse(model.isDateInThePast(date));
+        Assert.assertFalse(DateUtils.isDateInThePast(date));
     }
 
     @Test
@@ -115,7 +116,7 @@ public class ReservationModelTest {
         calendar.add(Calendar.DAY_OF_YEAR, -1);
         Date endDate = calendar.getTime();
 
-        Assert.assertTrue(model.isEndDateBeforeStartDate(startDate, endDate));
+        Assert.assertTrue(DateUtils.isEndDateBeforeStartDate(startDate, endDate));
     }
 
     @Test
@@ -126,18 +127,6 @@ public class ReservationModelTest {
         calendar.add(Calendar.DAY_OF_YEAR, 0);
         Date endDate = calendar.getTime();
 
-        Assert.assertFalse(model.isEndDateBeforeStartDate(startDate, endDate));
-    }
-
-    @Test
-    public void getParkingSize() {
-        Assert.assertEquals(10, model.getParkingSize());
-    }
-
-    @Test
-    public void getParking() {
-        Parking parking = new Parking(10);
-        model = new ReservationModel(parking);
-        Assert.assertEquals(parking, this.model.getParking());
+        Assert.assertFalse(DateUtils.isEndDateBeforeStartDate(startDate, endDate));
     }
 }

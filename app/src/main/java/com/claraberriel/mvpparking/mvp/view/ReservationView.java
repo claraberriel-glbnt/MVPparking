@@ -1,6 +1,5 @@
 package com.claraberriel.mvpparking.mvp.view;
 
-import android.content.Context;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -14,14 +13,12 @@ import java.util.Date;
 public class ReservationView extends FragmentView {
 
     private final FragmentReservationBinding reservationBinding;
-    private final Context context;
     private final Picker startDatePicker;
     private final Picker endDatePicker;
     
     public ReservationView(Fragment fragmentRef, FragmentReservationBinding reservationBinding) {
         super(fragmentRef);
         this.reservationBinding = reservationBinding;
-        this.context = getContext();
         startDatePicker = new Picker(reservationBinding.startDateTime);
         endDatePicker = new Picker(reservationBinding.endDateTime);
     }
@@ -39,8 +36,7 @@ public class ReservationView extends FragmentView {
     }
 
     /**
-     * Getters
-     * @return values from EditTexts inputs
+     * Getters @return values from EditTexts inputs
      */
 
     public Date getStartDate() {
@@ -51,7 +47,7 @@ public class ReservationView extends FragmentView {
         return endDatePicker != null ? endDatePicker.getDate() : null;
     }
 
-    public String getParkingNumber() throws NumberFormatException {
+    public String getParkingNumber() {
             return reservationBinding.parkingNumber.getText().toString();
     }
 
@@ -60,60 +56,45 @@ public class ReservationView extends FragmentView {
     }
 
     /**
-     * Toast Messages
-     * @param message to be displayed
+     * Toast Messages @param message to be displayed
      */
 
     //reusable
     private void showToast(String message) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        if (getContext() != null) {
+            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void showErrorNoReservationInThePast() {
-        if (context != null){
-            showToast((context).getString(R.string.reservationview_err_msg_inthepast));
-        }
+            showToast((getContext()).getString(R.string.reservationview_err_msg_inthepast));
     }
 
     public void showMissingField() {
-        if (context != null){
-            showToast((context).getString(R.string.reservationview_err_msg_missingfield));
-        }
+            showToast((getContext()).getString(R.string.reservationview_err_msg_missingfield));
     }
 
     public void showBackToTheFuture() {
-        if (context !=null){
-            showToast((context).getString(R.string.reservationview_err_msg_delorean));
-        }
+            showToast((getContext()).getString(R.string.reservationview_err_msg_delorean));
     }
 
     public void showInvalidNumber() {
-        if (context != null){
-            showToast((context).getString(R.string.reservationview_err_msg_numberformat));
-        }
+            showToast((getContext()).getString(R.string.reservationview_err_msg_numberformat));
     }
 
     public void showZeroNotAccepted() {
-        if (context != null) {
-            showToast((context).getString(R.string.reservationview_err_msg_zero));
-        }
+            showToast((getContext()).getString(R.string.reservationview_err_msg_zero));
     }
 
     public void showLargeNumber(int value) {
-        if (context != null) {
-            showToast((context).getString(R.string.reservationview_err_msg_large, value));
-        }
+            showToast((getContext()).getString(R.string.reservationview_err_msg_large, value));
     }
 
     public void showLargerThanThree() {
-        if (context != null){
-            showToast((context).getString(R.string.reservationview_err_msg_largerthan3));
-        }
+            showToast((getContext()).getString(R.string.reservationview_err_msg_largerthan3));
     }
     
     public void showReservationSuccess() {
-        if (context != null){
-            showToast((context).getString(R.string.reservationview_msg_success));
-        }
+            showToast((getContext()).getString(R.string.reservationview_msg_success));
     }
 }
