@@ -35,7 +35,7 @@ public class ReservationModel {
             if (reservation.getParkingNumber() == reservationInList.getParkingNumber()
                     && reservation.getStartDateTime() < reservationInList.getEndDateTime()) {
                 return false;
-            } //ToDo fix tests
+            }
         }
         return true;
     }

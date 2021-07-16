@@ -1,10 +1,10 @@
 package com.claraberriel.mvpparking.mvp.model;
 
 
-import android.util.Log;
-
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
+
+import java.util.Date;
 
 public class ReleaseModel {
 
@@ -18,10 +18,23 @@ public class ReleaseModel {
         return parking;
     }
 
-    public boolean parkingRelease(Reservation reservation) {
-        if (getParking().getReservations().size() <= 0) {
-            return false;
+    public int getParkingLotNumber(String parkingNumber) throws IllegalArgumentException {
+        int result = Integer.parseInt(parkingNumber);
+        if (result <= 0) {
+            throw new IllegalArgumentException();
         }
+        return result;
+    }
+
+    public boolean checkIfAnyReservationExists() throws IllegalArgumentException {
+        if (getParking().getReservations().size() == 0) {
+            throw new IllegalArgumentException();
+        }
+        return true;
+    }
+
+    public boolean parkingRelease(int parkingNumber, String securityCode) {
+        Reservation reservation = new Reservation(new Date().getTime(), new Date().getTime(), parkingNumber, securityCode);
         for (Reservation reservationInList : getParking().getReservations()) {
             if (reservation.equals(reservationInList)) {
                 getParking().getReservations().remove(reservation);
@@ -31,13 +44,4 @@ public class ReleaseModel {
         return false;
     }
 
-    public int getParkingNumber(String parkingNumberString) {
-        int parkingNumber = 0;
-        try {
-            parkingNumber = Integer.parseInt(parkingNumberString);
-        } catch (NumberFormatException ex) {
-            Log.e(ReservationModel.class.getSimpleName(), ex.getLocalizedMessage());
-        }
-        return parkingNumber;
-    }
 }

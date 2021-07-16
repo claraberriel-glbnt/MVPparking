@@ -38,4 +38,24 @@ public class ReleaseView extends FragmentView {
     public void showReservationReleased() {
         showToast((getContext()).getString(R.string.reslease_view_msg_success));
     }
+
+    public void showInvalidNumber() {
+        showToast((getContext()).getString(R.string.reservationview_err_msg_numberformat));
+    }
+
+    public void showZeroNotAccepted() {
+        showToast((getContext()).getString(R.string.reservationview_err_msg_zero));
+    }
+
+    public void showMissingField() {
+        showToast((getContext()).getString(R.string.reservationview_err_msg_missingfield));
+    }
+
+    public void showLargerThanThree() {
+        showToast((getContext()).getString(R.string.reservationview_err_msg_largerthan3));
+    }
+
+    public void showErrorNoExistingReservations() {
+        showToast(getContext().getString(R.string.release_view_err_msg_no_reservation));
+    }
 }

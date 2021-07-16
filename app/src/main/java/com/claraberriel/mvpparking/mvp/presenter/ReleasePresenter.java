@@ -1,7 +1,8 @@
 package com.claraberriel.mvpparking.mvp.presenter;
 
+import android.util.Log;
+
 import com.claraberriel.mvpparking.entities.Parking;
-import com.claraberriel.mvpparking.entities.Reservation;
 import com.claraberriel.mvpparking.mvp.model.ReleaseModel;
 import com.claraberriel.mvpparking.mvp.view.ReleaseView;
 
@@ -16,21 +17,55 @@ public class ReleasePresenter {
     }
 
     public boolean onRelease() {
-        Reservation reservation = new Reservation();
+        try {
+            releaseModel.checkIfAnyReservationExists();
+            if (isParkingLotNumberValid() && isSecurityCodeValid()) {
+                if (releaseModel.parkingRelease(releaseModel.getParkingLotNumber(releaseView.getParkingLotNumber()),
+                        releaseView.getSecurityCode())) {
+                    releaseView.showReservationReleased();
+                    return true;
+                } else {
+                    releaseView.showErrorParkingNumberSecurityCodeNotAMatch();
+                    return false;
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            releaseView.showErrorNoExistingReservations();
+            return false;
+        }
+        return false;
+    }
 
-        reservation.setParkingNumber(releaseModel.getParkingNumber(releaseView.getParkingLotNumber()));
-        reservation.setSecurityCode(releaseView.getSecurityCode());
 
-        if (releaseModel.parkingRelease(reservation)) {
-            releaseView.showReservationReleased();
+    public Parking getParkingWithReservations() {
+        return releaseModel.getParking();
+    }
+
+    private boolean isParkingLotNumberValid() {
+        try {
+            releaseModel.getParkingLotNumber(releaseView.getParkingLotNumber());
             return true;
-        } else {
-            releaseView.showErrorParkingNumberSecurityCodeNotAMatch();
+        } catch (NumberFormatException x) {
+            Log.e(ReleasePresenter.class.getSimpleName(), x.toString());
+            releaseView.showInvalidNumber();
+            return false;
+        } catch (IllegalArgumentException e) {
+            Log.e(ReleasePresenter.class.getSimpleName(), e.toString());
+            releaseView.showZeroNotAccepted();
             return false;
         }
     }
 
-    public Parking getParkingWithReservations() {
-        return releaseModel.getParking();
+    boolean isSecurityCodeValid() {
+        String securityCode = releaseView.getSecurityCode();
+        if (securityCode == null) {
+            releaseView.showMissingField();
+            return false;
+        }
+        if (securityCode.length() < 3) {
+            releaseView.showLargerThanThree();
+            return false;
+        }
+        return true;
     }
 }

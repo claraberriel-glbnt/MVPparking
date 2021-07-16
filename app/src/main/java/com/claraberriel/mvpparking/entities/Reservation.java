@@ -3,6 +3,8 @@ package com.claraberriel.mvpparking.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 public class Reservation implements Parcelable {
     private long startDateTime;
     private long endDateTime;
@@ -13,7 +15,6 @@ public class Reservation implements Parcelable {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.parkingNumber = parkingNumber;
-
         this.securityCode = securityCode;
     }
 
@@ -85,6 +86,20 @@ public class Reservation implements Parcelable {
         this.startDateTime = in.readLong();
         this.endDateTime = in.readLong();
         this.securityCode = in.readString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reservation that = (Reservation) o;
+        return parkingNumber == that.parkingNumber &&
+                securityCode.equals(that.securityCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parkingNumber, securityCode);
     }
 
     public static final Parcelable.Creator<Reservation> CREATOR = new Parcelable.Creator<Reservation>() {

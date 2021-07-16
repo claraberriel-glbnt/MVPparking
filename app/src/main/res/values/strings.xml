@@ -37,4 +37,5 @@
     <string name="release_view_err_msg_no_match">We couldn\'t find a reservation with that security code on that lot</string>
     <string name="reslease_view_msg_success">The reservation was canceled</string>
     <string name="release_msg_release_reservation">Release a reservation</string>
+    <string name="release_view_err_msg_no_reservation">There is no existing reservation to be released</string>
 </resources>
