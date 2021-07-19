@@ -2,6 +2,8 @@ package com.claraberriel.mvpparking.mvp.presenter;
 
 import android.util.Log;
 
+import androidx.annotation.VisibleForTesting;
+
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.mvp.model.ReleaseModel;
 import com.claraberriel.mvpparking.mvp.view.ReleaseView;
@@ -36,12 +38,12 @@ public class ReleasePresenter {
         return false;
     }
 
-
     public Parking getParkingWithReservations() {
         return releaseModel.getParking();
     }
 
-    private boolean isParkingLotNumberValid() {
+    @VisibleForTesting
+    boolean isParkingLotNumberValid() {
         try {
             releaseModel.getParkingLotNumber(releaseView.getParkingLotNumber());
             return true;
@@ -56,6 +58,7 @@ public class ReleasePresenter {
         }
     }
 
+    @VisibleForTesting
     boolean isSecurityCodeValid() {
         String securityCode = releaseView.getSecurityCode();
         if (securityCode == null) {
