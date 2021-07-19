@@ -3,40 +3,63 @@ package com.claraberriel.mvpparking.mvp.model;
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockedStatic;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
-
 public class ReleaseModelTest {
 
     private ReleaseModel releaseModel;
-    @Mock
-    private ReservationModel reservationModel;
-    private MockedStatic<Parking> parkingMockedStatic;
 
     @Before
-    public void setUp() {
+    public void setup() {
         Parking parking = new Parking(10);
         releaseModel = new ReleaseModel(parking);
-        parkingMockedStatic = mockStatic(Parking.class);
-        reservationModel = mock(ReservationModel.class);
     }
 
-    @After
-    public void tearDown() throws Exception {
-        parkingMockedStatic.close();
+    @Test
+    public void getParkingLotNumber_validString_ValidInt() {
+        Assert.assertEquals(5, releaseModel.getParkingLotNumber("5"));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void getParkingLotNumber_invalidChar_throwIllegalArgumentException() {
+        releaseModel.getParkingLotNumber("A");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getParkingLotNumber_invalidNumber_throwIllegalArgumentException() {
+        releaseModel.getParkingLotNumber("-1");
+    }
+
+    @Test
+    public void checkIfAnyReservationExists_PreExistingReservation_isTrue() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date startDate = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        Date endDate = calendar.getTime();
+
+        Reservation reservation = new Reservation(startDate.getTime(),
+                endDate.getTime(), 3, "code");
+
+        Parking parking = new Parking(10);
+        parking.getReservations().add(reservation);
+        releaseModel = new ReleaseModel(parking);
+
+        Assert.assertEquals(1, parking.getReservations().size());
+        Assert.assertTrue(releaseModel.checkIfAnyReservationExists());
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkIfAnyReservationExists_NoExistingReservation_isFalse() {
+        Parking parking = new Parking(10);
+        Assert.assertEquals(0, parking.getReservations().size());
+        Assert.assertFalse(releaseModel.checkIfAnyReservationExists());
+    }
 
     @Test
     public void parkingRelease_reservationExists_isTrue() {
@@ -46,18 +69,35 @@ public class ReleaseModelTest {
         calendar.add(Calendar.DAY_OF_YEAR, 2);
         Date endDate = calendar.getTime();
 
-        when(releaseModel.getParking()).thenReturn(new Parking(10));
-        Reservation reservation = new Reservation(startDate.getTime(), endDate.getTime(), 3, "code");
-        when(reservationModel.addReservation(reservation));
-        // getReservation
+        Reservation reservation = new Reservation(startDate.getTime(),
+                endDate.getTime(), 3, "code");
 
+        Parking parking = new Parking(10);
+        parking.getReservations().add(reservation);
+        releaseModel = new ReleaseModel(parking);
 
-        boolean release = releaseModel.parkingRelease(reservation);
+        boolean release = releaseModel.parkingRelease(3, "code");
 
         Assert.assertTrue(release);
     }
 
     @Test
-    public void getParkingNumber() {
+    public void parkingRelease_reservationNotEqual_isFalse() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date startDate = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        Date endDate = calendar.getTime();
+
+        Reservation reservation = new Reservation(startDate.getTime(),
+                endDate.getTime(), 3, "code");
+
+        Parking parking = new Parking(10);
+        parking.getReservations().add(reservation);
+        releaseModel = new ReleaseModel(parking);
+
+        boolean release = releaseModel.parkingRelease(4, "cod");
+
+        Assert.assertFalse(release);
     }
 }

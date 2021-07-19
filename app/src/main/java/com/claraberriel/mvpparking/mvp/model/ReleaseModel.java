@@ -34,7 +34,8 @@ public class ReleaseModel {
     }
 
     public boolean parkingRelease(int parkingNumber, String securityCode) {
-        Reservation reservation = new Reservation(new Date().getTime(), new Date().getTime(), parkingNumber, securityCode);
+        Reservation reservation = new Reservation(new Date().getTime(),
+                new Date().getTime(), parkingNumber, securityCode);
         for (Reservation reservationInList : getParking().getReservations()) {
             if (reservation.equals(reservationInList)) {
                 getParking().getReservations().remove(reservation);
