@@ -67,11 +67,11 @@ public class ReleasePresenterTest {
 
     @Test
     public void onRelease_exceptionNoExistingReservations_isFalse() {
-        when(releaseModel.checkIfAnyReservationExists()).thenReturn(false);
+        when(releaseModel.checkIfAnyReservationExists()).thenThrow(new IllegalArgumentException());
 
         boolean release = releasePresenter.onRelease();
 
-        verify(releaseView).showErrorNoExistingReservations(); //ToDo Wanted but not invoked
+        verify(releaseView).showErrorNoExistingReservations();
         Assert.assertFalse(release);
     }
 
