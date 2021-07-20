@@ -17,7 +17,7 @@ import com.claraberriel.mvpparking.mvp.presenter.ReleasePresenter;
 import com.claraberriel.mvpparking.mvp.view.ReleaseView;
 
 public class ReleaseFragment extends Fragment {
-    public static final String PARKING_KEY = "PARKING";
+    public static final String PARKING_ARGUMENT = "PARKING";
     private ReleaseFragmentDelegate delegate;
     private ReleasePresenter releasePresenter;
     private FragmentReleaseBinding fragmentReleaseBinding;
@@ -41,7 +41,7 @@ public class ReleaseFragment extends Fragment {
         fragmentReleaseBinding = FragmentReleaseBinding.inflate(inflater, container, false);
 
         if(getArguments() != null) {
-            Parking parking = getArguments().getParcelable(PARKING_KEY);
+            Parking parking = getArguments().getParcelable(PARKING_ARGUMENT);
             releasePresenter = new ReleasePresenter(new ReleaseModel(parking), new ReleaseView(this, fragmentReleaseBinding));
         }
         setListeners();
