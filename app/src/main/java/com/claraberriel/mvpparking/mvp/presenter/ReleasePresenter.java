@@ -21,6 +21,11 @@ public class ReleasePresenter {
     public boolean onRelease() {
         try {
             releaseModel.checkIfAnyReservationExists();
+        } catch (IllegalArgumentException e) {
+            releaseView.showErrorNoExistingReservations();
+            return false;
+        }
+        if (releaseModel.checkIfAnyReservationExists()) {
             if (isParkingLotNumberValid() && isSecurityCodeValid()) {
                 if (releaseModel.parkingRelease(releaseModel.getParkingLotNumber(releaseView.getParkingLotNumber()),
                         releaseView.getSecurityCode())) {
@@ -31,9 +36,6 @@ public class ReleasePresenter {
                     return false;
                 }
             }
-        } catch (IllegalArgumentException e) {
-            releaseView.showErrorNoExistingReservations();
-            return false;
         }
         return false;
     }
