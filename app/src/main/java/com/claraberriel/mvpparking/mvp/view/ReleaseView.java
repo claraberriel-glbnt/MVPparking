@@ -11,7 +11,7 @@ public class ReleaseView extends FragmentView {
 
     private final FragmentReleaseBinding binding;
 
-    public ReleaseView(Fragment fragmentRef, FragmentReleaseBinding binding){
+    public ReleaseView(Fragment fragmentRef, FragmentReleaseBinding binding) {
         super(fragmentRef);
         this.binding = binding;
     }

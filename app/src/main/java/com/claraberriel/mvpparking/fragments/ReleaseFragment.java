@@ -17,15 +17,15 @@ import com.claraberriel.mvpparking.mvp.presenter.ReleasePresenter;
 import com.claraberriel.mvpparking.mvp.view.ReleaseView;
 
 public class ReleaseFragment extends Fragment {
-    public static final String PARKING_ARGUMENT = "PARKING";
-    private ReleaseFragmentDelegate delegate;
-    private ReleasePresenter releasePresenter;
-    private FragmentReleaseBinding fragmentReleaseBinding;
-
 
     public interface ReleaseFragmentDelegate {
         void onReleaseFragmentButtonClicked(Parking parking);
     }
+
+    public static final String PARKING_ARGUMENT = "PARKING";
+    private ReleaseFragmentDelegate delegate;
+    private ReleasePresenter releasePresenter;
+    private FragmentReleaseBinding fragmentReleaseBinding;
 
     @Override
     public void onAttach(Context context) {
@@ -40,11 +40,11 @@ public class ReleaseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentReleaseBinding = FragmentReleaseBinding.inflate(inflater, container, false);
 
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             Parking parking = getArguments().getParcelable(PARKING_ARGUMENT);
             releasePresenter = new ReleasePresenter(new ReleaseModel(parking), new ReleaseView(this, fragmentReleaseBinding));
+            setListeners();
         }
-        setListeners();
         return fragmentReleaseBinding.getRoot();
     }
 

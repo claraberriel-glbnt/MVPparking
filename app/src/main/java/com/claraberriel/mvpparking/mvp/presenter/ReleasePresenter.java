@@ -10,6 +10,7 @@ import com.claraberriel.mvpparking.mvp.view.ReleaseView;
 
 public class ReleasePresenter {
 
+    private static final int LENGTH = 3;
     private final ReleaseModel releaseModel;
     private final ReleaseView releaseView;
 
@@ -67,7 +68,7 @@ public class ReleasePresenter {
             releaseView.showMissingField();
             return false;
         }
-        if (securityCode.length() < 3) {
+        if (securityCode.length() <= LENGTH) {
             releaseView.showLargerThanThree();
             return false;
         }
