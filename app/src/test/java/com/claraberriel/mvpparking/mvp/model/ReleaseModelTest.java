@@ -56,8 +56,6 @@ public class ReleaseModelTest {
 
     @Test (expected = IllegalArgumentException.class)
     public void checkIfAnyReservationExists_NoExistingReservation_isFalse() {
-        Parking parking = new Parking(10);
-        Assert.assertEquals(0, parking.getReservations().size());
         Assert.assertFalse(releaseModel.checkIfAnyReservationExists());
     }
 

@@ -13,7 +13,7 @@
         tools:context=".fragments.ReleaseFragment">
 
         <TextView
-            android:id="@+id/test_view"
+            android:id="@+id/txt_title_release"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/release_msg_release_reservation"
@@ -39,11 +39,10 @@
             android:textColor="@color/hilt_gray"
             android:textColorHint="@color/hilt_gray"
             android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@id/test_view"
+            app:layout_constraintTop_toBottomOf="@id/txt_title_release"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/input_security_code" />
-
 
         <EditText
             android:id="@+id/input_security_code"
@@ -60,7 +59,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_release" />
-
 
         <Button
             android:id="@+id/btn_release"
