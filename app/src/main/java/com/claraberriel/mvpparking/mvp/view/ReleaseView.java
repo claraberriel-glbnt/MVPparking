@@ -25,37 +25,41 @@ public class ReleaseView extends FragmentView {
     }
 
     //reusable
-    private void showToast(String message) {
+    private void showToast(int id) {
         if (getContext() != null) {
-            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), id, Toast.LENGTH_LONG).show();
         }
     }
 
     public void showErrorParkingNumberSecurityCodeNotAMatch() {
-        showToast((getContext()).getString(R.string.release_view_err_msg_no_match));
+        showToast(R.string.release_view_err_msg_no_match);
     }
 
     public void showReservationReleased() {
-        showToast((getContext()).getString(R.string.reslease_view_msg_success));
+        showToast(R.string.reslease_view_msg_success);
     }
 
     public void showInvalidNumber() {
-        showToast((getContext()).getString(R.string.reservationview_err_msg_numberformat));
+        showToast(R.string.reservationview_err_msg_numberformat);
     }
 
     public void showZeroNotAccepted() {
-        showToast((getContext()).getString(R.string.reservationview_err_msg_zero));
+        showToast(R.string.reservationview_err_msg_zero);
     }
 
     public void showMissingField() {
-        showToast((getContext()).getString(R.string.reservationview_err_msg_missingfield));
+        showToast(R.string.reservationview_err_msg_missingfield);
     }
 
     public void showLargerThanThree() {
-        showToast((getContext()).getString(R.string.reservationview_err_msg_largerthan3));
+        showToast(R.string.reservationview_err_msg_largerthan3);
     }
 
     public void showErrorNoExistingReservations() {
-        showToast(getContext().getString(R.string.release_view_err_msg_no_reservation));
+        showToast(R.string.release_view_err_msg_no_reservation);
+    }
+
+    public void showMoreThanOneReservation() {
+        showToast(R.string.err_msg_more_than_one_match);
     }
 }

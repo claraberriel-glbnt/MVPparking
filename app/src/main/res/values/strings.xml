@@ -38,4 +38,5 @@
     <string name="reslease_view_msg_success">The reservation was canceled</string>
     <string name="release_msg_release_reservation">Release a reservation</string>
     <string name="release_view_err_msg_no_reservation">There is no existing reservation to be released</string>
+    <string name="err_msg_more_than_one_match">I found more than one reservation with that data and I\'m not that smart to figure out which one you want to release</string>
 </resources>

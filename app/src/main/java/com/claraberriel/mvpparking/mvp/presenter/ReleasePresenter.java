@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.annotation.VisibleForTesting;
 
 import com.claraberriel.mvpparking.entities.Parking;
+import com.claraberriel.mvpparking.excpetions.ReservationListEmptyException;
+import com.claraberriel.mvpparking.excpetions.ReservationMoreThanOneMatchException;
 import com.claraberriel.mvpparking.mvp.model.ReleaseModel;
 import com.claraberriel.mvpparking.mvp.view.ReleaseView;
 
@@ -19,24 +21,46 @@ public class ReleasePresenter {
         this.releaseView = releaseView;
     }
 
-    public boolean onRelease() {
-        try {
-            releaseModel.checkIfAnyReservationExists();
-        } catch (IllegalArgumentException e) {
-            releaseView.showErrorNoExistingReservations();
-            return false;
-        }
-        if (releaseModel.checkIfAnyReservationExists()) {
-            if (isParkingLotNumberValid() && isSecurityCodeValid()) {
-                if (releaseModel.parkingRelease(releaseModel.getParkingLotNumber(releaseView.getParkingLotNumber()),
-                        releaseView.getSecurityCode())) {
-                    releaseView.showReservationReleased();
-                    return true;
-                } else {
-                    releaseView.showErrorParkingNumberSecurityCodeNotAMatch();
-                    return false;
-                }
+    /*
+            Reservation reservation = new Reservation();
+        int parkingNumber = releaseModel.getParkingNumber(releaseView.getParkingLotNumber());
+        String securityCode = releaseView.getSecurityCode();
+
+        if (validateSecurityCode(securityCode) && validateParkingLot(parkingNumber)) {
+            reservation.setSecurityCode(securityCode);
+            reservation.setParkingLot(parkingNumber);
+
+            try{
+                releaseModel.parkingRelease(reservation) ;
+                releaseView.showSuccessMessageReleaseReservation();
+                return true;
+            } catch (ReservationListEmptyException ex){
+                releaseView.showErrorReservationListEmptyException();
+            } catch (ReleaseMoreThanOneMatchException ex){
+                releaseView.showErrorReleaseMoreThanOneMatchException();
+            }catch (ReleaseNoMatchException ex){
+                releaseView.showErrorReleaseNoMatchException();
             }
+        }
+        return false;
+    }
+
+     */
+    public boolean onRelease() {
+        if (isParkingLotNumberValid() && isSecurityCodeValid()) {
+            try {
+                releaseModel.parkingRelease(releaseModel.getParkingLotNumber(releaseView.getParkingLotNumber()),
+                        releaseView.getSecurityCode());
+                releaseView.showReservationReleased();
+            } catch (ReservationListEmptyException emptyException) {
+                releaseView.showErrorNoExistingReservations();
+                return false;
+            } catch (ReservationMoreThanOneMatchException matchException) {
+                releaseView.showMoreThanOneReservation();
+            }
+        } else {
+            releaseView.showErrorParkingNumberSecurityCodeNotAMatch();
+            return false;
         }
         return false;
     }

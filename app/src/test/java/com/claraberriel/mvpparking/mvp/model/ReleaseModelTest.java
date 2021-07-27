@@ -2,6 +2,8 @@ package com.claraberriel.mvpparking.mvp.model;
 
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
+import com.claraberriel.mvpparking.excpetions.ReservationListEmptyException;
+import com.claraberriel.mvpparking.excpetions.ReservationMoreThanOneMatchException;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,31 +38,7 @@ public class ReleaseModelTest {
     }
 
     @Test
-    public void checkIfAnyReservationExists_PreExistingReservation_isTrue() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
-        Date startDate = calendar.getTime();
-        calendar.add(Calendar.DAY_OF_YEAR, 2);
-        Date endDate = calendar.getTime();
-
-        Reservation reservation = new Reservation(startDate.getTime(),
-                endDate.getTime(), 3, "code");
-
-        Parking parking = new Parking(10);
-        parking.getReservations().add(reservation);
-        releaseModel = new ReleaseModel(parking);
-
-        Assert.assertEquals(1, parking.getReservations().size());
-        Assert.assertTrue(releaseModel.checkIfAnyReservationExists());
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void checkIfAnyReservationExists_NoExistingReservation_isFalse() {
-        Assert.assertFalse(releaseModel.checkIfAnyReservationExists());
-    }
-
-    @Test
-    public void parkingRelease_reservationExists_isTrue() {
+    public void parkingRelease_reservationExists_isTrue() throws ReservationListEmptyException, ReservationMoreThanOneMatchException {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date startDate = calendar.getTime();
@@ -80,7 +58,7 @@ public class ReleaseModelTest {
     }
 
     @Test
-    public void parkingRelease_reservationNotEqual_isFalse() {
+    public void parkingRelease_reservationNotEqual_isFalse() throws ReservationListEmptyException, ReservationMoreThanOneMatchException {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date startDate = calendar.getTime();
