@@ -3,7 +3,6 @@ package com.claraberriel.mvpparking.mvp.presenter;
 import android.util.Log;
 
 import com.claraberriel.mvpparking.entities.Parking;
-import com.claraberriel.mvpparking.excpetions.ReservationListEmptyException;
 import com.claraberriel.mvpparking.mvp.model.ReleaseModel;
 import com.claraberriel.mvpparking.mvp.view.ReleaseView;
 
@@ -39,11 +38,10 @@ public class ReleasePresenterTest {
     }
 
     @Test
-    public void onRelease_inputValidated_isTrue() throws ReservationListEmptyException {
+    public void onRelease_inputValidated_isTrue() {
         when(releaseView.getParkingLotNumber()).thenReturn("3");
         when(releaseModel.getParkingLotNumber("3")).thenReturn(3);
         when(releaseView.getSecurityCode()).thenReturn("code");
-        when(releaseModel.parkingRelease(3, "code")).thenReturn(true);
 
         boolean release = releasePresenter.onRelease();
 
@@ -52,15 +50,14 @@ public class ReleasePresenterTest {
     }
 
     @Test
-    public void onRelease_NotAMatch_isFalse() throws ReservationListEmptyException {
+    public void onRelease_NotAMatch_isFalse() {
         when(releaseView.getParkingLotNumber()).thenReturn("3");
         when(releaseModel.getParkingLotNumber("3")).thenReturn(3);
         when(releaseView.getSecurityCode()).thenReturn("code");
-        when(releaseModel.parkingRelease(3, "code")).thenReturn(false);
 
         boolean release = releasePresenter.onRelease();
 
-        verify(releaseView).showErrorParkingNumberSecurityCodeNotAMatch();
+        verify(releaseView).showErrorParkingNumberSecurityCodeNotAMatch(); //ToDo
         Assert.assertFalse(release);
     }
 

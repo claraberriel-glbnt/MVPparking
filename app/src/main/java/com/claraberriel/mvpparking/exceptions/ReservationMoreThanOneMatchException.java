@@ -1,4 +1,4 @@
-package com.claraberriel.mvpparking.excpetions;
+package com.claraberriel.mvpparking.exceptions;
 
 public class ReservationMoreThanOneMatchException extends Exception {
     public ReservationMoreThanOneMatchException() {

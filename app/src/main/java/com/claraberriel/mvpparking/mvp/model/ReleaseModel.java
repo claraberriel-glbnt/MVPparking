@@ -3,8 +3,9 @@ package com.claraberriel.mvpparking.mvp.model;
 
 import com.claraberriel.mvpparking.entities.Parking;
 import com.claraberriel.mvpparking.entities.Reservation;
-import com.claraberriel.mvpparking.excpetions.ReservationListEmptyException;
-import com.claraberriel.mvpparking.excpetions.ReservationMoreThanOneMatchException;
+import com.claraberriel.mvpparking.exceptions.ReservationListEmptyException;
+import com.claraberriel.mvpparking.exceptions.ReservationMoreThanOneMatchException;
+import com.claraberriel.mvpparking.exceptions.ReservationNotFoundException;
 
 import java.util.Date;
 
@@ -28,7 +29,7 @@ public class ReleaseModel {
         return result;
     }
 
-    public boolean parkingRelease(int parkingNumber, String securityCode) throws ReservationListEmptyException, ReservationMoreThanOneMatchException {
+    public void parkingRelease(int parkingNumber, String securityCode) throws ReservationListEmptyException, ReservationMoreThanOneMatchException, ReservationNotFoundException {
         if (getParking().getReservations().size() == 0) {
             throw new ReservationListEmptyException();
         }
@@ -43,10 +44,10 @@ public class ReleaseModel {
         }
         if (count == 1) {
             getParking().getReservations().remove(reservation);
-            return true;
-        } else if (count > 0) {
+        } else if (count > 1) {
             throw new ReservationMoreThanOneMatchException();
+        } else if (count == 0) {
+            throw new ReservationNotFoundException();
         }
-        return false;
     }
 }

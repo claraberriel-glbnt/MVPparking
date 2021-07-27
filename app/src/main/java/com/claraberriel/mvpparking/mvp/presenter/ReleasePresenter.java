@@ -5,8 +5,9 @@ import android.util.Log;
 import androidx.annotation.VisibleForTesting;
 
 import com.claraberriel.mvpparking.entities.Parking;
-import com.claraberriel.mvpparking.excpetions.ReservationListEmptyException;
-import com.claraberriel.mvpparking.excpetions.ReservationMoreThanOneMatchException;
+import com.claraberriel.mvpparking.exceptions.ReservationListEmptyException;
+import com.claraberriel.mvpparking.exceptions.ReservationMoreThanOneMatchException;
+import com.claraberriel.mvpparking.exceptions.ReservationNotFoundException;
 import com.claraberriel.mvpparking.mvp.model.ReleaseModel;
 import com.claraberriel.mvpparking.mvp.view.ReleaseView;
 
@@ -52,15 +53,15 @@ public class ReleasePresenter {
                 releaseModel.parkingRelease(releaseModel.getParkingLotNumber(releaseView.getParkingLotNumber()),
                         releaseView.getSecurityCode());
                 releaseView.showReservationReleased();
+                return true;
             } catch (ReservationListEmptyException emptyException) {
                 releaseView.showErrorNoExistingReservations();
                 return false;
             } catch (ReservationMoreThanOneMatchException matchException) {
                 releaseView.showMoreThanOneReservation();
+            } catch (ReservationNotFoundException notFoundException) {
+                releaseView.showErrorParkingNumberSecurityCodeNotAMatch();
             }
-        } else {
-            releaseView.showErrorParkingNumberSecurityCodeNotAMatch();
-            return false;
         }
         return false;
     }
