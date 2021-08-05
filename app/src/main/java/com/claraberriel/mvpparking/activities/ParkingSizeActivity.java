@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.claraberriel.mvpparking.databinding.ActivityParkingSizeBinding;
 import com.claraberriel.mvpparking.mvp.model.ParkingModel;
-import com.claraberriel.mvpparking.mvp.presenter.NavPresenter;
 import com.claraberriel.mvpparking.mvp.presenter.ParkingSizePresenter;
 import com.claraberriel.mvpparking.mvp.view.ParkingSizeView;
 
@@ -14,7 +13,6 @@ public class ParkingSizeActivity extends AppCompatActivity {
 
     private ActivityParkingSizeBinding binding;
     private ParkingSizePresenter presenter;
-    private NavPresenter navPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

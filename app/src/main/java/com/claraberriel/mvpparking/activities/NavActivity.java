@@ -15,12 +15,13 @@ import com.claraberriel.mvpparking.mvp.presenter.NavPresenter;
 
 import static com.claraberriel.mvpparking.fragments.ReservationFragment.PARKING_KEY;
 
-public class NavActivity extends AppCompatActivity implements ReservationFragment.ReservationFragmentDelegate {
+public class NavActivity extends AppCompatActivity implements ReservationFragment.ReservationFragmentDelegate, ReleaseFragment.ReleaseFragmentDelegate {
 
     public static final String PARKING_SIZE_EXTRA = "SIZE";
     private static final String RESERVE_FRAGMENT_TAG = "RESERVE_FRAGMENT";
     private static final String RELEASE_FRAGMENT_TAG = "RELEASE_FRAGMENT";
     private static final String AUTO_RELEASE_FRAGMENT_TAG = "AUTO_RELEASE_FRAGMENT";
+
     private ActivityNavigationBinding binding;
     private NavPresenter navPresenter;
 
@@ -50,8 +51,12 @@ public class NavActivity extends AppCompatActivity implements ReservationFragmen
         });
 
         binding.buttonRelease.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(PARKING_KEY, navPresenter.getParking());
+            ReleaseFragment releaseFragment = new ReleaseFragment();
+            releaseFragment.setArguments(bundle);
             FragmentTransaction transactionRelease = getSupportFragmentManager().beginTransaction();
-            transactionRelease.replace(R.id.fragment_container, new ReleaseFragment(), RELEASE_FRAGMENT_TAG);
+            transactionRelease.replace(R.id.fragment_container, releaseFragment, RELEASE_FRAGMENT_TAG);
             transactionRelease.commit();
         });
 
@@ -64,6 +69,11 @@ public class NavActivity extends AppCompatActivity implements ReservationFragmen
 
     @Override
     public void onReservationFragmentButtonClicked(Parking parking){
+        navPresenter.setParking(parking);
+    }
+
+    @Override
+    public void onReleaseFragmentButtonClicked(Parking parking){
         navPresenter.setParking(parking);
     }
 }
